@@ -1,0 +1,33 @@
+@import "../_settings";
+
+.page-template-page-search-php {
+  @include at-vertical-phone {
+    @include unfloat-mobile-nav-against(".search-page-content");
+  }
+}
+
+.search-results {
+  @include at-mobile {
+    @include float-mobile-nav-against(".search-results-content");
+  }
+  
+  @include at-vertical-phone {
+    @include unfloat-mobile-nav-against(".search-results-content");
+  }
+}
+
+.search-form {
+  @include full-width-input;
+  margin-bottom: $line-height;
+}
+
+.search-result {
+  h1 {
+    padding-left: $indent;
+    margin-bottom: 0;
+  }
+  
+  .text {
+    margin-bottom: $line-height;
+  }
+}

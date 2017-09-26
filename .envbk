@@ -1,0 +1,8 @@
+DB_NAME=soil_dev
+DB_USER=root
+DB_PASSWORD=password
+DB_HOST=localhost
+
+WP_ENV=staging
+WP_HOME=http://192.241.189.119
+WP_SITEURL=http://192.241.189.119/wp

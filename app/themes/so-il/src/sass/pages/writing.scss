@@ -1,0 +1,38 @@
+@import "../_settings";
+
+.writing {
+  .long-excerpt,
+  .shorter-excerpt,
+  .micro-excerpt,
+  .tiny-excerpt {
+    display: none;
+  }
+  
+  .short-excerpt {
+    display: block;
+  }
+}
+
+.single-writing {
+  .content {
+    padding-top: $body-padding;
+  }
+  
+  .content .text a {
+    //font-style: italic;
+  }
+
+  .menu-writing {
+    font-style: italic;
+  }
+  
+  @include at-mobile {
+    .banner {
+      position: absolute;
+    }
+    
+    .text h1 {
+      margin-right: 2em;
+    }
+  }
+}  

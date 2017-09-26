@@ -1,0 +1,53 @@
+@import "../_settings";
+
+.post-type-archive-news-post {
+  @include at-mobile {
+    @include float-mobile-nav-against(".archive-posts");
+    @include columned-subnav;
+  }
+}
+
+
+
+
+.news-post {
+  margin-bottom:1em;
+  
+  h1 {
+    margin-bottom: .8em;
+    display:block;
+  }
+  
+  figure {
+    @extend %figure-post;
+  }
+  
+  img {
+    @include image-max-dimensions;
+    width:54%;
+    display:block !important;
+    
+    @include at-mobile {
+      width:100%;
+    }
+  }
+  
+  p img {
+    margin-bottom:$line-height;
+  }
+
+  .date {
+    //@include indent;
+  }
+  
+  .text a {
+    //font-style: italic;
+  }
+  
+  .text {
+    p {
+      max-width: 700px;
+      @extend %smaller-text;
+    }
+  }
+}

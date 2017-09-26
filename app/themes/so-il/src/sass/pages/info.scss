@@ -1,0 +1,9 @@
+@import "../_settings";
+
+.page-content {
+  article {
+    p {
+      @extend %smaller-text;
+    }
+  }
+}

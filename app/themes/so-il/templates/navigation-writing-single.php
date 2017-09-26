@@ -1,0 +1,1 @@
+<a class="close" href="<?= project_close_link() ?>"><i></i></a>

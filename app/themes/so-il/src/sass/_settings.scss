@@ -1,0 +1,1228 @@
+@function _($px) {
+  @return $px / $font-size * 1em;
+}
+
+$font-size: 27px;
+$line-height: _(31px);
+$body-padding: _(36px);
+
+$indent: $line-height * 1.5;
+$small-indent: $indent * 0.5;
+
+$buffer: $line-height / 2;
+$body-buffer: $body-padding - $line-height / 2;
+$content-padding: $line-height * 2 + $body-padding;
+$border-weight: _(3px);
+$giant-border-weight: _(3.2px);
+
+$close-top-padding: _(20px);
+$close-left-padding: $line-height;
+
+$min-width:     1120px;
+$min-width-ems: _($min-width);
+
+$one-column:    11.1%;
+$two-columns:   22.2%;
+$three-columns: 33.3%;
+$four-columns:  44.4%;
+$five-columns:  55.5%;
+$six-columns:   66.6%;
+$seven-columns: 77.7%;
+$eight-columns: 88.8%;
+$nine-columns:  99.9%; 
+
+$blur-modifier: 1;
+$default-blur: 10px * $blur-modifier;
+$image-blur: 24px * $blur-modifier;
+$white-blur-falloff: -2px * $blur-modifier;
+
+$cropping-enlargement: 1.2;
+
+
+@mixin transition($transition) {
+    -webkit-transition:$transition;
+    -moz-transition:$transition;
+    -o-transition:$transition;
+    transition:$transition;
+    //transition-timing-function: $transition-timing-function;
+	//easeInOutSine
+}
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin blur($px: 0) {
+    -webkit-filter: blur(#{$px}px) !important;
+    -ms-filter: blur(#{$px}px) !important;
+    -moz-filter: blur(#{$px}px) !important;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'blur\'><feGaussianBlur stdDeviation=\'#{$px}\' /></filter></svg>#blur");
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='#{$px}');
+}
+
+
+@mixin do-blur($blur: $default-blur) {
+  @include with-filters {
+    filter: blur($blur);
+    
+    .white-text & {
+      filter: blur($blur + $white-blur-falloff);
+    }
+  }
+}
+
+@mixin do-text-blur {
+  .text,
+  .related, .related-right,
+  .images .caption,
+  .counter .number {
+    @include do-blur;
+  }
+}
+
+@mixin custom-underline {
+  position:relative;
+  
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+        bottom: -.09em;
+    //padding-bottom: 0em;
+    border-bottom: .14em solid #000;
+    width: 100%;
+    //@include transform(scaleY(1.01));
+  }
+}
+
+@mixin custom-underline-white {
+  position:relative;
+  
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    padding-bottom: .02em;
+    border-bottom: .14em solid #fff;
+    width: 100%;
+  }
+}
+
+@mixin do-image-blur {
+  @include with-filters {
+    img, .video-positioner, .block-slideshow {
+      filter: blur($image-blur) !important;
+      transition-duration:none !important;
+    }
+  }
+}
+
+@mixin dont-blur() {
+  @include with-filters {
+    &, & a {
+      filter: blur(0);
+    }
+    
+    img, .video-player {
+      filter: blur(0);
+    }
+  }
+}
+
+@mixin with-filters {
+  html.cssfilters & {
+    @content;
+  }
+}
+
+
+
+
+
+
+
+
+@mixin content-block {
+  position: relative;
+  top: $line-height;
+  width: 50%;
+  margin: $line-height * 2 auto;
+  z-index: 8000;
+}
+
+@mixin indent {
+  text-indent: $indent;
+  
+  @include at-small-screen {
+    text-indent: $small-indent;
+  }
+}
+
+@mixin block-indent {
+  margin-left: $indent;
+  
+  @include at-small-screen {
+    margin-left: $small-indent;
+  }
+}
+
+@mixin univers {
+  font-family: 'soil-univers', "Univers", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: _(1px);
+  word-spacing: 0.04em;
+  
+  -webkit-font-smoothing: antialiased;
+  
+  @include at-vertical-phone {
+    font-size: $font-size * 0.75;
+  }
+  
+  @include at-horizontal-phone {
+    font-size: $font-size * 0.75;
+  }
+  
+  @include at-giant-screen {
+    font-size: $font-size * 1.26;
+  }
+}
+
+
+@mixin centered {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@mixin full-width-input {
+  margin-top: -3px;
+  
+  .input-group {
+    position: relative;
+  }
+  
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px 10px 10px 0;
+    white-space: nowrap;
+  }
+  
+  input[type="text"] {
+    @include underline;
+    margin-bottom: 5px;
+    outline: none;
+    width: 100%;
+    text-indent: 5px;
+    background-color: transparent;
+    padding: 1px;
+    -webkit-appearance: none;
+    
+    body.white-text & {
+      border-color: white;
+      color: white;
+    }
+  }
+}
+
+@mixin at-vertical-phone {
+  @include at-mobile {
+    @include at-small-vertical {
+      @content;
+    }
+  }
+}
+
+@mixin at-horizontal-phone {
+  @include at-mobile {
+    @include at-small-horizontal {
+      @content;
+    }
+  }
+}
+
+@mixin at-small-vertical {
+  @media only screen 
+    and (max-device-width : 600px) 
+    and (orientation : portrait) {
+    @content;
+  }
+}
+
+@mixin at-small-horizontal {
+  @media only screen 
+    and (max-device-width : 600px) 
+    and (orientation : landscape) {
+    @content;
+  }
+}
+
+@mixin when-horizontal {
+  @media only screen 
+    and (orientation : landscape) {
+    @content;
+  }
+}
+
+@mixin when-vertical {
+  @media only screen 
+    and (orientation : portrait) {
+    @content;
+  }
+}
+
+@mixin at-giant-screen {
+  @media screen and (min-width: 1650px) {
+    @content;
+  }
+}
+
+@mixin at-small-screen {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+ 
+@mixin at-mobile {
+  .touch & {
+    @content;
+  }
+}
+
+@mixin at-desktop {
+  .no-touch & {
+    @content;
+  }
+}
+
+@mixin at-tablet {
+  @include at-mobile {
+    @media only screen 
+      and (min-device-width : 600px) {
+      @content;
+    }
+  }
+}
+
+%smaller-text {
+  font-size: 22px;
+  line-height: 1.18em;
+  letter-spacing:.02em;
+  
+  @include at-mobile {
+    
+    font-size:16px;
+    line-height: 1.25em;
+    
+  }
+}
+
+
+
+
+@mixin at-horizontal-tablet {
+  @include at-mobile {
+    @media only screen 
+      and (min-device-width : 600px)
+      and (orientation : landscape) {
+      @content;
+    }
+  }
+}
+
+@mixin at-vertical-tablet {
+  @include at-mobile {
+    @media only screen 
+      and (min-device-width : 600px)
+      and (orientation : portrait) {
+      @content;
+    }
+  }
+}
+
+@mixin under-min-width {
+  @media (max-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin mobile-block {
+  @include at-mobile {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    min-width: none;
+    width: auto;
+    margin: 0;
+    
+    header {
+      display: none !important;
+    }
+    
+    h1 {
+      position: relative;
+    }
+    
+    .text {
+      -webkit-transform: translate3d(0,0,0);
+    }
+    
+    .related {
+      display: none;
+    }
+  }
+}
+
+@mixin container($inner: '') {
+  padding-left: $body-padding;
+  padding-right: $body-padding;
+  
+  @if($inner) {
+    .#{$inner}-inner {
+      @include container-inner;
+    }
+  }
+}
+
+@mixin container-inner {
+  position: relative;
+  margin-left: -$buffer;
+  margin-right: -$buffer;
+  
+  @include at-mobile {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@mixin has-inner {
+  .inner {
+    padding: 0 $buffer;
+    
+    @include at-mobile {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@mixin underline {
+  border: none;
+  //border-bottom: $border-weight solid black;
+  border-radius: 0;
+  
+  @include custom-underline;
+  
+  @include at-giant-screen {
+    //border-bottom-width: $giant-border-weight;
+  }
+}
+
+@mixin nav-hover-state {
+  $line-height-offset: _(2px);
+  
+  @include underline;
+  line-height: $line-height - $border-weight - $line-height-offset;
+  margin-bottom: _(-1px);
+  
+  .white-text & {
+    border-color: white !important;
+    @include custom-underline-white;
+    
+    &:hover {
+      @include custom-underline-white;
+    }
+  }
+  
+  @include at-giant-screen {
+    line-height: $line-height - $giant-border-weight - $line-height-offset;
+  }
+  
+}
+
+@mixin image-sidebar($width: $two-columns, $left: $seven-columns) {
+  .images {
+    display: none;
+
+    .container {
+      width: $width;
+      position: absolute;
+      left: $left;
+      top: 0;
+    }
+
+    .inner {
+      padding: 0 $buffer;
+    }
+
+    .image,
+    .video {
+      cursor: pointer;
+      margin-bottom: $line-height;
+      position: fixed;
+      top: -90000%;
+      left: -90000%;
+
+      img,
+      .vjs-player {
+        width: 100%;
+        display: block;
+        opacity: 1 !important;
+      }
+      
+      video, object {
+        width: 100%;
+      }
+      
+      .caption {
+        margin-top: $line-height / 3;
+      }
+      
+      &.active {
+        position: static;
+        top: 0;
+        left: 0;
+      }
+      
+      @include at-mobile {
+        position: static;
+        width: 100%;
+      }
+    }
+
+    .video {
+      height: 100%;
+      width: 100%;
+    }
+    
+    .background {
+      display: none;
+    }
+
+  }
+  
+  body.showing-footnote .images,
+  &.showing-footnote .images {
+    display: block;
+  }
+}
+
+@mixin background {
+  .background {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 7000;
+    
+    .no-touch.not-chrome & img {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &[data-full-bleed="true"] {
+      @include scale-crop;
+    }
+    
+    @include at-mobile {
+      position: absolute;
+      display: block !important;
+    }
+    
+    @content;
+  }
+  
+  &.active {
+    .background {
+      display: block;
+    }
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+  }
+}
+
+@mixin scale-crop {
+  transform: scale($cropping-enlargement) !important;
+  
+  @include at-mobile {
+    transform: scale(1) !important;
+  }
+}
+
+@mixin fixed-position-min-width {
+  @include under-min-width {
+    right: auto;
+    width: $min-width-ems - $body-buffer * 2;
+  }
+}
+
+@mixin fixed-position-min-width-full {
+  @include under-min-width {
+    right: auto;
+    width: $min-width-ems;
+  }
+}
+
+@mixin columns($number) {
+  -webkit-column-count: $number;
+  -moz-column-count: $number;
+  column-count: $number;
+}
+
+@mixin horizontal-nav {
+  nav li {
+    display: inline-block;
+    margin-right: _(10px);
+  }
+}
+
+@mixin horizontal-mobile-nav {
+  @include at-horizontal-phone {
+    @include horizontal-nav;
+  }
+
+  @include at-horizontal-tablet {
+    @include horizontal-nav;
+  }
+}
+
+@mixin svg-slideshow-button($name, $width, $height, $left: 50%, $right: '') {
+  background: transparent url('../svg/#{$name}_black.svg') no-repeat scroll 0 0;
+  position: absolute;
+  top: 50%;
+  
+  @if ($right != '') {
+    right: $right;
+  } @else {
+    left: $left;
+  }
+  z-index: 10000;
+
+  width: $width;
+  height: $height;
+  background-size: $width $height;
+  margin-top: $height / -2;
+  
+  @if ($right != '') {
+    margin-right: $width / -2;
+  } @else {
+    margin-left: $width / -2;
+  }
+  
+  overflow: hidden;
+  text-indent: -9999px;
+  
+  .block.white &,
+  .white-text & {
+    background-image: url('../svg/#{$name}_white.svg');
+  }
+}
+
+@mixin slick-slideshow($item: ".image") {
+  .slick-initialized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    #{unquote($item)} {
+      @include background;
+      overflow: hidden;
+    }
+    
+    .background {
+      
+      
+    }
+    
+    img {
+      display: none;
+    }
+    
+    @include caption {
+      display: block;
+    }
+    
+    .video-poster {
+      display: block;
+    }
+    
+    &.is-swiping {
+      .caption,
+      .play-button,
+      .previous,
+      .next,
+      h1 {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@mixin project-slideshow {
+  @include slick-slideshow;
+  
+  overflow: hidden;
+  display: block;
+  
+  .container {
+    background-color: white;
+    z-index: 11000;
+  }
+  
+  .image {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .caption {
+    @include mobile-caption;
+  }
+}
+
+@mixin counter {
+  .counter {
+    float: left;
+  }
+  
+  .counter + .description {
+    margin-left: _(90px);
+  }
+}
+
+@mixin caption {
+  .caption {
+    @include counter;
+    
+    position: absolute;
+    bottom: $body-padding;
+    left: $body-buffer;
+    width: 100%;
+    z-index: 12000;
+    display: none;
+    
+    .caption-inner {
+      width: $five-columns;
+      margin: 0 auto;
+      padding: 0 $line-height;
+    }
+    
+    @include at-mobile {
+      @include mobile-caption;
+    }
+    
+    @content;
+  }
+}
+
+@mixin mobile-caption {
+  left: 0 !important;
+  width: 100% !important;
+  
+  .caption-inner {
+    width: auto !important;
+    padding: 0 $body-padding !important;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@mixin float-mobile-nav-against($content) {
+  .main-nav {
+    position: fixed;
+    top: $body-padding;
+    left: $body-padding;
+  }
+
+  .subnav,
+  #{unquote($content)} {
+    margin-left: 35%;
+    width: 65%;
+  }
+  
+  .content {
+    padding-top: 0;
+  }
+  
+  @include at-small-horizontal {
+    .subnav,
+    #{unquote($content)} {
+      margin-left: 30%;
+      width: 70%;
+    }
+  }
+}
+
+@mixin unfloat-mobile-nav-against($content) {
+  .main-nav {
+    position: static;
+    margin-bottom: $line-height;
+  }
+  
+  .subnav,
+  #{unquote($content)} {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@mixin columned-navigation {
+  @include columns(2);
+  @include at-small-vertical {
+    @include columns(auto);
+  }
+  
+  @content;
+}
+
+@mixin columned-subnav {
+  .subnav .inner > ul {
+    @include columned-navigation {
+      padding-top: 0;
+      padding-bottom: $line-height;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin image-max-dimensions {
+  $large-max: _(290px);
+  $small-max: _(148px);
+  
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  
+  @include at-mobile {
+    max-height: $large-max;
+    max-width: $large-max;
+    margin: $line-height / -2 0;
+  }
+  
+  @include at-vertical-phone {
+    max-height: $small-max;
+    max-width: 100%;
+  }
+
+  @include at-horizontal-phone {
+    max-height: $small-max;
+    max-width: 100%;
+  }
+}
+
+
+
+
+/* FLEXBOX */
+@mixin flexbox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+//%flexbox { @include flexbox; }
+
+//----------------------------------
+
+@mixin inline-flex {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+
+%inline-flex { @include inline-flex; }
+
+//----------------------------------------------------------------------
+
+// Flexbox Direction
+//
+// The 'flex-direction' property specifies how flex items are placed in
+// the flex container, by setting the direction of the flex container's
+// main axis. This determines the direction that flex items are laid out in. 
+//
+// Values: row | row-reverse | column | column-reverse
+// Default: row
+//
+// http://w3.org/tr/css3-flexbox/#flex-direction-property
+
+@mixin flex-direction($value: row) {
+	@if $value == row-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: horizontal;
+	} @else if $value == column {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+	} @else if $value == column-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: vertical;
+	} @else {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+	}
+	-webkit-flex-direction: $value;
+	-moz-flex-direction: $value;
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+	// Shorter version:
+	@mixin flex-dir($args...) { @include flex-direction($args...); }
+
+//----------------------------------------------------------------------
+
+// Flexbox Wrap
+//
+// The 'flex-wrap' property controls whether the flex container is single-line
+// or multi-line, and the direction of the cross-axis, which determines
+// the direction new lines are stacked in. 
+//
+// Values: nowrap | wrap | wrap-reverse
+// Default: nowrap
+//
+// http://w3.org/tr/css3-flexbox/#flex-wrap-property
+
+@mixin flex-wrap($value: nowrap) {
+	// No Webkit Box fallback.
+	-webkit-flex-wrap: $value;
+	-moz-flex-wrap: $value;
+	@if $value == nowrap {
+		-ms-flex-wrap: none;
+	} @else { 
+		-ms-flex-wrap: $value; 
+	}
+	flex-wrap: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Flow (shorthand)
+//
+// The 'flex-flow' property is a shorthand for setting the 'flex-direction'
+// and 'flex-wrap' properties, which together define the flex container's
+// main and cross axes.
+//
+// Values: <flex-direction> | <flex-wrap> 
+// Default: row nowrap
+//
+// http://w3.org/tr/css3-flexbox/#flex-flow-property
+
+@mixin flex-flow($values: (row nowrap)) {
+	// No Webkit Box fallback.
+	-webkit-flex-flow: $values;
+	-moz-flex-flow: $values;
+	-ms-flex-flow: $values;
+	flex-flow: $values;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Order
+//
+// The 'order' property controls the order in which flex items appear within
+// their flex container, by assigning them to ordinal groups.
+//
+// Default: 0
+//
+// http://w3.org/tr/css3-flexbox/#order-property
+
+@mixin order($int: 0) {
+	-webkit-box-ordinal-group: $int + 1;
+	-webkit-order: $int;
+	-moz-order: $int;
+	-ms-flex-order: $int;
+	order: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Grow
+//
+// The 'flex-grow' property sets the flex grow factor. Negative numbers
+// are invalid.
+//
+// Default: 0
+//
+// http://w3.org/tr/css3-flexbox/#flex-grow-property
+
+@mixin flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-webkit-flex-grow: $int;
+	-moz-flex-grow: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Shrink
+//
+// The 'flex-shrink' property sets the flex shrink factor. Negative numbers
+// are invalid.
+//
+// Default: 1
+//
+// http://w3.org/tr/css3-flexbox/#flex-shrink-property
+
+@mixin flex-shrink($int: 1) {
+	-webkit-flex-shrink: $int;
+	-moz-flex-shrink: $int;
+	-ms-flex-negative: $int;
+	flex-shrink: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Basis
+//
+// The 'flex-basis' property sets the flex basis. Negative lengths are invalid. 
+//
+// Values: Like "width" 
+// Default: auto
+//
+// http://www.w3.org/TR/css3-flexbox/#flex-basis-property
+
+@mixin flex-basis($value: auto) {
+	-webkit-flex-basis: $value;
+	-moz-flex-basis: $value;
+	-ms-flex-preferred-size: $value;
+	flex-basis: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox "Flex" (shorthand)
+//
+// The 'flex' property specifies the components of a flexible length: the
+// flex grow factor and flex shrink factor, and the flex basis. When an
+// element is a flex item, 'flex' is consulted instead of the main size
+// property to determine the main size of the element. If an element is
+// not a flex item, 'flex' has no effect.
+//
+// Values: none | <flex-grow> <flex-shrink> || <flex-basis>
+// Default: See individual properties (1 1 0).
+//
+// http://w3.org/tr/css3-flexbox/#flex-property
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+    
+	// Set a variable to be used by box-flex properties
+	$fg-boxflex: $fg;
+
+	// Box-Flex only supports a flex-grow value so let's grab the
+	// first item in the list and just return that.
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Justify Content
+//
+// The 'justify-content' property aligns flex items along the main axis
+// of the current line of the flex container. This is done after any flexible
+// lengths and any auto margins have been resolved. Typically it helps distribute
+// extra free space leftover when either all the flex items on a line are
+// inflexible, or are flexible but have reached their maximum size. It also
+// exerts some control over the alignment of items when they overflow the line.
+//
+// Note: 'space-*' values not supported in older syntaxes.
+//
+// Values: flex-start | flex-end | center | space-between | space-around
+// Default: flex-start
+//
+// http://w3.org/tr/css3-flexbox/#justify-content-property
+
+@mixin justify-content($value: flex-start) {
+	@if $value == flex-start {
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+	} @else if $value == flex-end {
+		-webkit-box-pack: end;
+		-ms-flex-pack: end;
+	} @else if $value == space-between {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+	} @else if $value == space-around {
+		-ms-flex-pack: distribute;		
+	} @else {
+		-webkit-box-pack: $value;
+		-ms-flex-pack: $value;
+	}
+	-webkit-justify-content: $value;
+	-moz-justify-content: $value;
+	justify-content: $value;
+}
+	// Shorter version:
+	@mixin flex-just($args...) { @include justify-content($args...); }
+
+//----------------------------------------------------------------------
+
+// Flexbox Align Items
+//
+// Flex items can be aligned in the cross axis of the current line of the
+// flex container, similar to 'justify-content' but in the perpendicular
+// direction. 'align-items' sets the default alignment for all of the flex
+// container's items, including anonymous flex items. 'align-self' allows
+// this default alignment to be overridden for individual flex items. (For
+// anonymous flex items, 'align-self' always matches the value of 'align-items'
+// on their associated flex container.) 
+//
+// Values: flex-start | flex-end | center | baseline | stretch
+// Default: stretch
+//
+// http://w3.org/tr/css3-flexbox/#align-items-property
+
+@mixin align-items($value: stretch) {
+	@if $value == flex-start {
+		-webkit-box-align: start;
+		-ms-flex-align: start;
+	} @else if $value == flex-end {
+		-webkit-box-align: end;
+		-ms-flex-align: end;
+	} @else {
+		-webkit-box-align: $value;
+		-ms-flex-align: $value;
+	}
+	-webkit-align-items: $value;
+	-moz-align-items: $value;
+	align-items: $value;
+}
+
+//----------------------------------
+
+// Flexbox Align Self
+//
+// Values: auto | flex-start | flex-end | center | baseline | stretch
+// Default: auto
+
+@mixin align-self($value: auto) {
+	// No Webkit Box Fallback.
+	-webkit-align-self: $value;
+	-moz-align-self: $value;
+	@if $value == flex-start {
+		-ms-flex-item-align: start;
+	} @else if $value == flex-end {
+		-ms-flex-item-align: end;
+	} @else {
+		-ms-flex-item-align: $value;
+	}
+	align-self: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Align Content
+//
+// The 'align-content' property aligns a flex container's lines within the
+// flex container when there is extra space in the cross-axis, similar to
+// how 'justify-content' aligns individual items within the main-axis. Note,
+// this property has no effect when the flexbox has only a single line.
+//
+// Values: flex-start | flex-end | center | space-between | space-around | stretch
+// Default: stretch
+//
+// http://w3.org/tr/css3-flexbox/#align-content-property
+
+@mixin align-content($value: stretch) {
+	// No Webkit Box Fallback.
+	-webkit-align-content: $value;
+	-moz-align-content: $value;
+	@if $value == flex-start {
+		-ms-flex-line-pack: start;
+	} @else if $value == flex-end {
+		-ms-flex-line-pack: end;
+	} @else {
+		-ms-flex-line-pack: $value;
+	}
+	align-content: $value;
+}
+
+
+
+
+%figure-post {
+  width:100% !important;
+  margin:0;
+  margin-bottom:1em;
+  @include flexbox;
+  
+  @include at-mobile {
+    @include flex-direction(column);
+  }
+  
+  img {
+    object-fit:contain;
+    @include align-self(flex-start);
+    float:left;
+    margin-right:1.16em !important;
+    //max-width:560px !important;
+    width:70% !important;
+    
+    @include at-mobile {
+      width:100% !important;
+      max-width:100% !important;
+      margin-right:0 !important;
+      max-height:100% !important;
+      margin:0 !important;
+    }
+    //width: 60% !important;
+  }
+  
+  figcaption {
+    float:left;
+    width:25%;
+    
+    @include at-mobile {
+      width:100%;
+      margin-top:.58em;
+    }
+    //margin-left:1em;
+    @extend %smaller-text;
+  }
+  
+  &:after {
+    content:' ';
+    display:block;
+    clear:both;
+  }
+}

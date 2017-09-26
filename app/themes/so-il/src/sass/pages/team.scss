@@ -1,0 +1,11 @@
+@import "../_settings";
+
+.team {
+  p {
+    @extend %smaller-text;
+  }
+}
+
+figure {
+  @extend %figure-post;
+}

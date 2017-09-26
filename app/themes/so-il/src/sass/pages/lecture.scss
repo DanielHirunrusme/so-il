@@ -1,0 +1,26 @@
+@import "../_settings";
+
+.post-type-archive-lecture {
+  @include at-mobile {
+    @include float-mobile-nav-against(".archive-posts");
+    @include columned-subnav;
+  }
+  
+  .lecture {
+    margin-bottom: $line-height;
+
+    h1 {
+      margin-bottom: 0;
+    }
+    
+    a {
+      //font-style: italic;
+    }
+    
+    @include at-mobile {
+      header {
+        display: none !important;
+      }
+    }
+  }
+}

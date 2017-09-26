@@ -1,0 +1,9 @@
+@import "../_settings";
+
+article {
+  ul {
+    li {
+      @extend %smaller-text;
+    }
+  }
+}

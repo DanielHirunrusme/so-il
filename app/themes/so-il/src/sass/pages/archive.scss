@@ -1,0 +1,278 @@
+@import "../_settings";
+
+.post-type-archive-project {
+  table {
+    width: 100%;
+    
+    @include at-mobile {
+      @include when-vertical {
+        display: none;
+      }
+    }
+  }
+  
+  table tr,
+  table td {
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+  }
+  
+  table td {
+    width: 50%;
+    height: 1px; // fakes out chrome to collapse td elements to align to
+                 // the top of the row, even if adjacent to a rowspan'ed td
+  }
+  
+  table .block {
+    @include at-mobile {
+      display: none; // Blocks are moved outside of table with JS
+      
+      @include when-horizontal {
+        display: block;
+      }
+    }
+  }
+  
+  .liberated-blocks {
+    display: none;
+
+    @include when-vertical {
+      display: block;
+    }
+  }
+  
+  .subnav {
+    ul {
+      margin: 0;
+      
+      @include at-mobile {
+        padding: 0;
+      }
+    }
+    
+    .project-archive-section {
+      //@include clearfix;
+      //margin-bottom: $line-height;
+      
+      &.all-category {
+        margin-bottom: $line-height;
+      }
+    }
+    
+    .project-archive-categories {
+      @include at-mobile {
+        @include columned-navigation {
+          padding-top: $line-height;
+          position: relative;
+          margin-bottom: 0;
+
+          .control-item:first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+        
+        @include at-small-vertical {
+          margin-bottom: $line-height;
+        }
+      }
+    }
+    
+    .project-archive-years {
+      $year-width: _(73px);
+      
+      line-height: $line-height;
+      width: $year-width * 3 + 0.05em;
+      
+      @include at-mobile {
+        width: auto;
+      }
+      
+      .control-item {
+        float: left;
+        width: $year-width;
+        
+        &:first-child {
+          float: none;
+        }
+        
+        @include at-mobile {
+          width: $year-width + _(10px);
+        }
+      }
+    }
+  }
+  
+  .content {
+    overflow: hidden;
+    
+    @include at-mobile {
+      padding-top: 0;
+    }
+  }
+  
+  .archive-posts {
+    margin-left: $two-columns;
+    
+    .block {
+      @include has-inner;
+      margin-bottom: $line-height * 2;
+      display: block;
+      
+      .text {
+        width: 100%;
+      }
+      
+      @include at-mobile {
+        margin-bottom: $line-height;
+        
+        .inner {
+          @include when-horizontal {
+            padding: 0 $buffer;
+          }
+        }
+      }
+    }
+
+    .project {
+
+      h1 {
+        margin: 0.4em 0 0;
+        
+        date {
+          display:none;
+        }
+      }
+
+      .image {
+        margin: 0;
+
+        img {
+          display: block;
+          
+          .no-touch.not-chrome & {
+            transform: translate3d(0, 0, 0);
+          }
+          
+          &.horizontal {
+            width: 100%;
+          }
+          
+          &.vertical {
+            max-width: 70%;
+            
+            @include at-vertical-phone {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+    
+    .writing {
+      h1 {
+        margin-bottom: 0;
+      }
+      
+      @include at-mobile {
+        .block-inner {
+          margin: $line-height 0;
+        }
+      }
+      
+      @include at-vertical-phone {
+        .short-excerpt { display: none; }
+        .tiny-excerpt { display: block; }
+      }
+      
+      @include at-horizontal-phone {
+        .short-excerpt { display: none; }
+        .micro-excerpt { display: block; }
+      }
+      
+      @include at-vertical-tablet {
+        .short-excerpt { display: none; }
+        .long-excerpt { display: block; }
+      }
+      
+      @include at-horizontal-tablet {
+        .short-excerpt { display: none; }
+        .shorter-excerpt { display: block; }
+      }
+    }
+    
+    @include at-mobile {
+      width: 100%;
+      margin: 0;
+      
+      header {
+        display: block !important;
+        margin: 0 0 $line-height;
+      }
+      
+      .liberated-blocks {
+        .project {
+          width: auto;
+          display: block;
+
+          .image {
+            padding-right: 0;
+          }
+
+          img {
+            max-width: inherit !important;
+            max-height: inherit !important;
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+  
+  @include at-mobile {
+    @include float-mobile-nav-against(".archive-posts");
+    
+    .archive-posts-inner {
+      @include when-horizontal {
+        margin: 0 -#{$buffer};
+      }
+    }
+  }
+}
+
+.post-type-archive {
+  
+  .text {
+    display:block !important;
+  }
+  
+  
+}
+
+.archive {
+  .content-inner {
+    figure {
+      img {
+        //cursor:pointer;
+      }
+    }
+    .sticky-container {
+      display:none;
+    }
+  }
+}
+
+.archive.contents-hidden {
+  .banner {
+    .sticky-container {
+      display:none;
+    }
+  }
+  .content-inner {
+    .sticky-container {
+      display:block;
+    }
+  }
+}

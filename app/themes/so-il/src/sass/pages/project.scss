@@ -1,0 +1,468 @@
+@import "../_settings";
+
+.single-project {
+  
+  
+  .overview-block {
+    .text {
+      &.sticky {
+        position:fixed;
+        top:$body-padding - $body-padding/10;
+        .inner {
+              margin-right: $body-padding/2;
+        }
+      }
+    }
+  }
+  
+  &.project-images {
+    @include horizontal-mobile-nav;
+    overflow:hidden;
+    
+    .banner {
+      z-index: 100000000;
+      position: fixed;
+      
+      @include at-desktop { 
+        @include fixed-position-min-width;
+      }
+      
+      @include at-mobile {
+        position: absolute;
+      }
+    }
+    
+    .js & .content {
+      //visibility: hidden;
+    }
+
+    .js.showing-images & .content,
+    .js.showing-images & .popup,
+    .js.showing-images.touch & .images {
+      visibility: visible;
+    }
+    
+    .images {
+      //visibility: hidden;
+    }
+    
+    @include at-mobile {
+      .images {
+        @include project-slideshow;
+      }
+      
+      .content {
+        padding: 0;
+      }
+    }
+    
+    .single-image {
+      .image {
+        background-size:cover;
+        background-position:center center;
+        background-repeat:none;
+      }
+      .caption {
+        display:block !important;
+        
+        .text {
+          width:100% !important;
+          
+          h1 {
+            margin:0;
+          }
+        }
+      }
+      .caption {
+        display:block;
+      }
+    }
+    
+  }
+  
+  &.project-overview {
+    @include image-sidebar($width: $three-columns, $left: $four-columns);
+    @include horizontal-mobile-nav;
+    
+    .banner {
+      position: absolute;
+
+      @include at-mobile {
+        position: static;
+      }
+    }
+    
+    article {
+      p:empty {
+        display:none;
+      }
+      span {
+        @extend p;
+      }
+    }
+    
+    .caption-inner {
+      position:relative;
+      top:0em;
+      
+      .description {
+        height:auto;
+        overflow:visible;
+        bottom:auto;
+      }
+    }
+    
+    .sticky-container {
+      
+      &.all-visible {
+        position:absolute;
+        top:0 !important;
+        
+        .image {
+          position:relative;
+          
+          .background {
+            @include opacity(1);
+          }
+        }
+      }
+      
+      .related {
+        //margin-top:1.6em;
+      }
+      
+      .slideshow-caption {
+        @include flexbox;
+       
+        
+        .counter {
+          display:none;
+        }
+        
+        .description {
+          left:auto;
+          position:relative;
+          
+          .title {
+            display:none;
+          }
+        }
+      }
+      
+      .field-container-collaborators {
+        
+        p {
+          margin:0;
+          margin-left:1.75em;
+          text-indent:-1.75em;
+        }
+        
+      }
+    }
+    
+    
+    
+    
+    
+    
+    .content .text a {
+      //font-style: italic;
+    }
+    
+    .text {
+      margin: 0;
+      width: $four-columns;
+      
+      @include at-mobile {
+        width: auto;
+      }
+    }
+    
+    article p, article p span {
+      @extend %smaller-text;
+      
+    }
+    
+    .images {
+      
+      &.active {
+        display:block;
+      }
+      
+      .inner {
+        //margin-top:1em;
+      }
+    }
+    
+    .related {
+      a {
+        @extend %smaller-text;
+      }
+      
+      .related_post {
+        margin-left:1.75em;
+        text-indent:-1.75em;
+      }
+    }
+    
+    .caption-inner {
+      @extend %smaller-text;
+    }
+    
+    
+    
+    @include at-mobile {
+      $slideshow-height: _(350px);
+      $small-slideshow-height: _(140px);
+      
+      .text {
+        -webkit-transform: none;
+      }
+      
+      .related {
+        display: block;
+        position: static;
+        width: 100%;
+        
+        h2, .related_post {
+          
+          //margin-bottom: $line-height;
+        }
+      }
+      
+      .images {
+        @include project-slideshow;
+        
+        display: none;
+        
+        &.should-show {
+          display: block;
+        }
+
+        &.is-small {
+          height: $slideshow-height;
+          position: relative;
+          top: 0;
+          left: 0;
+          margin: 0 -#{$body-padding} $line-height;
+
+          .container,
+          .image {
+            position: relative !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          .caption {
+            display: none !important;
+          }
+          
+          .play-button {
+            display: none !important;
+          }
+        }
+      }
+      
+      img {
+        display: none !important;
+      }
+      
+      .background,
+      .background img,
+      .video-player img {
+        display: block !important;
+      }
+      
+      .video-player {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+      
+      @include at-small-screen {
+        .images.is-small {
+          height: $small-slideshow-height;
+        }
+      }
+    }
+  }
+  
+  &.project-overview.contents-hidden {
+    overflow:hidden;
+    
+    .related-right {
+      display:none;
+    }
+    
+    .caption-inner {
+      padding:0 !important;
+      top:0 !important;
+    }
+    
+    .caption {
+      left:.4em !important;
+    }
+    .sticky-container {
+      
+      .image.active {
+        
+         
+          
+          .slideshow-caption {
+            
+            display:block;
+            
+            
+          }
+          
+        
+        
+      }
+      
+      .slideshow-caption {
+        display:none;
+        position:absolute;
+        bottom:0;
+        
+         @include univers;
+         
+        .counter {
+          display:block;
+        }
+        
+        .description {
+          //float:left;
+          margin-left:0 !important;
+          @include flex(1);
+          height:31px;
+          display:block;
+          overflow:hidden;
+          bottom:0;
+          position:absolute;
+          left:6.4em;
+    
+          .title {
+            display:inline;
+          }
+    
+          @include at-mobile {
+            left:0;
+          }
+    
+          @include at-vertical-phone {
+            height:22px;
+          }
+  
+          @include at-horizontal-phone {
+            height:22px;
+          }
+  
+          @include at-giant-screen {
+            height:39px;
+          }
+    
+          &.expanded {
+            height:auto;
+            overflow:visible;
+            display:block;
+          }
+          
+          .title {
+            display:inline;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+
+.wrap .content .images.popup {
+  color: black;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 11000;
+  display: block;
+  
+  @include caption;
+  @include at-desktop {
+    @include fixed-position-min-width-full;
+  }
+  
+  .container {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  
+  .image {
+    @include background;
+    
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    
+    //cursor: ew-resize;
+    
+    img {
+      display: none;
+    }
+    
+    &.active {
+      position: absolute !important;
+      left: 0;
+      right: auto;
+      width: 100%;
+      display:block !important;
+      
+      .background {
+        display: block;
+      }
+      
+      .caption {
+        display: block;
+      }
+    }
+    
+    &.hide-caption .caption {
+      display: none !important;
+    }
+  }
+  
+  .vjs-player {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .close {
+    position: fixed;
+    top: $body-padding - $close-top-padding + _(3px);
+    right: $body-padding - $line-height + _(1px);
+    
+    @include at-mobile {
+      position: absolute;
+    }
+  }
+  
+  &.white-text {
+    color: white;
+    
+    .close {
+      background-position: 0 -18px;
+    }
+  }
+}

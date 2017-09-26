@@ -1,0 +1,12 @@
+@import "../_settings";
+
+.client {
+  .page-content {
+    article {
+      p {
+        @include univers;
+      }
+    }
+  }
+ 
+}

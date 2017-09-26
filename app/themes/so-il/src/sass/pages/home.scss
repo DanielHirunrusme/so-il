@@ -1,0 +1,195 @@
+@import "../_settings";
+
+.home {
+  overflow:hidden;
+  
+  .sticky-container {
+    display:none;
+  }
+}
+
+.home, .project-images {
+  .js.no-touch & .banner {
+    visibility: hidden;
+  }
+  
+  .js.no-touch.loaded & .banner {
+    visibility: visible;
+  }
+  
+  .js & .content {
+    visibility: hidden;
+  }
+  
+  .js.js-finished & .content {
+    visibility: visible;
+  }
+  
+  @include horizontal-mobile-nav;
+  @include slick-slideshow(".block");
+  
+  .content {
+    padding: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+  
+  .block {
+    @include container(block);
+    
+    display: block;
+    position: fixed;
+    top: 0;
+    right: -9000%;
+    left: 8900%;
+    bottom: 0;
+    margin: 0;
+    //cursor: ew-resize;
+    
+    &.active {
+      left: 0;
+      right: 0;
+      
+      //@include fixed-position-min-width;
+    }
+    
+    .block-inner {
+      height: 100%;
+    }
+    
+    .text {
+      padding-top: $body-padding + $line-height * 2;
+    }
+    
+    .related {
+      position: absolute;
+      width: $two-columns;
+      left: $seven-columns;
+      top: $body-padding + $line-height * 2;
+    }
+    
+    @include mobile-block;
+    
+    @include at-mobile {
+      @include caption;
+    }
+  }
+  
+  .project {
+    @include background;
+    
+    &.excerpt_video,
+    &.excerpt {
+      @include has-inner;
+      @include counter;
+      
+      h1 {
+        position: absolute;
+        bottom: $body-padding;
+        margin: 0;
+        
+        @include at-mobile {
+          width: 100%;
+          bottom:0;
+        }
+      }
+      
+      .text {
+        position: relative;
+        padding: 0;
+        height: 100%;
+      }
+      
+      .vjs-player {
+        position: absolute;
+        top: 0;
+        left: -$body-padding;
+        padding: 0 $body-padding;
+        height: 100%;
+        width: 100%;
+      }
+      
+      .no-full-bleed .vjs-player {
+        left: 0;
+        padding: 0;
+      }
+      
+      &.hide-caption .text {
+        display: none;
+      }
+    }
+    
+    &.expanded {
+      
+      .text {
+        position: absolute;
+        top: $body-padding + $line-height * 2;
+        left: 0;
+        width: $four-columns;
+        margin: 0;
+        padding: 0;
+        
+        // Counter should be hidden here. The expanded class is removed
+        // on touch based devices, and the counter is used in that context.
+        .counter {
+          display: none;
+        }
+      }
+      
+      .images {
+        position: absolute;
+        top: $body-padding + $line-height * 2;
+        left: $four-columns;
+        width: $three-columns;
+        display: block;
+        z-index: 10000;
+        
+        .image,
+        .video {
+          margin-bottom: $line-height;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          
+          img,
+          .vjs-player {
+            display: block;
+            width: 100%;
+            opacity: 1 !important;
+          }
+          
+          .caption {
+            margin-top: $line-height / 2;
+          }
+        }
+        
+        .video {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    
+  }
+  
+  .project.expanded,
+  .writing {
+    .counter {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: $body-padding;
+      
+      
+      .number {
+        @include has-inner;
+        
+        margin: 0 auto;
+        width: $five-columns;
+      }
+    }
+  }
+}
+
+.counter {
+  //display:none !important;
+}

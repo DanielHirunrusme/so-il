@@ -1,0 +1,137 @@
+@import "../_settings";
+
+.page-template-page-contact-php {
+  
+  h1 {
+    border: 0;
+    @include custom-underline;
+    line-height: .96em;
+    margin-bottom:.6em;
+    padding-bottom:.6em;
+    &:after {
+      bottom:0;
+    }
+  }
+  .columns {
+    a {
+      &:hover {
+        @include custom-underline;
+      }
+    }
+  }
+ 
+  
+  label {
+    display:none;
+  }
+  
+  #cscf {
+    input, textarea {
+      display:none;
+    }
+    
+    #cscf_SubmitButton {
+      
+    }
+  }
+  
+  textarea {
+    @include at-mobile {
+      left:-.13em;
+      position:relative;
+    }
+  }
+  
+  input, textarea {
+    border:none;
+    width:100%;
+    letter-spacing: .04em;
+    padding:0 !important;
+    padding-right:0 !important;
+    text-indent:0;
+    
+    &:focus {
+      outline:none;
+    }
+  }
+  
+  textarea {
+    height:4em;
+  }
+  
+  #cscf_SubmitButton {
+    width:auto;
+    cursor:pointer;
+    background:none;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    //font-style:italic;
+  }
+  
+  input[type=text] {
+    text-indent:0;
+    border-bottom:0;
+    margin-bottom:0;
+  }
+  
+  .newsletter {
+    //padding-top:1em;
+    //margin-bottom:2em;
+    //clear:left;
+    a {
+      @include at-mobile {
+        width: 100%;
+        display: block;
+        padding-bottom: .4em;
+        margin-bottom: 1em;
+      }
+    }
+  }
+  
+  .communications {
+    margin-bottom:1em;
+  }
+  
+  .columns {
+    &>div:first-child, &>div:last-child {
+      width:50%;
+      float:left;
+      
+      @include at-mobile {
+        width:100%;
+      }
+      
+      
+    }
+    
+    &:after {
+      content:' ';
+      clear:both;
+      display:block;
+    }
+  }
+}
+
+.cscfForm {
+  p {
+    display:none;
+  }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: black;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: black;
+}
+
+textarea {
+  font-size:1em;
+  font-weight:bold;
+}

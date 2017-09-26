@@ -1,0 +1,12 @@
+@import "../_settings";
+
+.post-type-archive-writeup {
+  @include at-mobile {
+    @include float-mobile-nav-against(".archive-posts");
+    @include columned-subnav;
+  }
+  
+  .writeup {
+    margin-bottom: $line-height;
+  }
+}
