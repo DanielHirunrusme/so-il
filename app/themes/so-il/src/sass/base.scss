@@ -3,39 +3,40 @@
 html, body {
   height: 100%;
   overflow: visible;
-  color: black;
+  color: #000;
 }
-
+  
 body {
   @include univers;
-  
-  //position: relative;
-  margin: 0;
+    
+  //position: relative; 
+  margin: 0;  
   min-width: $min-width;
   
   &.blur-content {
     // really specific in order to override regular hover state
     .main-nav li a {
-      border: none;
+      border: none; 
     }
-    
-    nav a {
+     
+    nav a { 
       @include do-blur;
       
       &:hover {
         @include nav-hover-state;
         @include dont-blur;
-      }
+      } 
     }
     
     .content, .related-right {
-      @include do-text-blur;
+      @include do-text-blur;   
       @include do-image-blur;
-    }
+     
+	}
   }
   
   &.white-text {
-    color: white;
+    color: white; 
     
     a {
       color: white !important;

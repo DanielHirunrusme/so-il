@@ -1,26 +1,5 @@
 @import "_settings";
 
-/*
-@include at-mobile {
-  
-  .content {
-    margin-top: 0;
-    padding-top: $line-height;
-    
-    .content-inner {
-      margin: 0;
-    }
-  }
-  
-  .sticky-container,
-  .subnav {
-    position: static;
-    width: auto;
-  }
-
-}
-*/
-
 .content {
   @include at-mobile {
     margin-top: 0;
@@ -33,8 +12,8 @@
     }
     
   }
-}
-
+} 
+ 
 .sticky-container,
 .subnav {
   @include at-mobile {

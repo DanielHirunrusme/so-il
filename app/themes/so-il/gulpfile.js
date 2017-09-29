@@ -18,15 +18,15 @@ var paths = {
   image: 'src/img/**/*'
 }
 
-gulp.task('sass', function(){
-  console.log(sass.info);
-  gulp.src(paths.sass)
-    .pipe(sass({ errLogToConsole: true }))
-    .pipe(prefix("last 2 versions", "> 1%", "ie 8", "ie 7"))
-    .pipe(minify())
-    .pipe(concat('main.min.css'))
-    .pipe(gulp.dest('assets/css'))
-})
+gulp.task('sass', function () {
+  return gulp.src(paths.sass)
+    .pipe(sass().on('error', sass.logError))
+	.pipe(concat('main.min.css'))
+	.pipe(minify())
+    .pipe(gulp.dest('assets/css'));
+});
+
+
 
 gulp.task('js', function(){
   gulp.src(paths.js)
