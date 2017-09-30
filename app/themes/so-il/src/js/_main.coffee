@@ -275,31 +275,49 @@ isScrolling = false
 scrollingNum = 0
 jumpCuts = []
 scrollTimer = 0
+deltas = [null, null, null, null, null, null, null, null, null]
+lock = 0
 
-mouseWheel = (e) ->
-  
-  console.log(e)
-  
-  if ($('body').hasClass('scrolling'))
-    return true
-    
-  addState 'scrolling'
-  
-  setTimeout ( ->
-      removeState 'scrolling'
-    ), 1000
-  
+hasPeak = ->
+	if (lock > 0) 
+		lock-=.3; return false
+	if (deltas[0] == null) 
+		return false
+	if (deltas[0] <  deltas[4] && deltas[1] <= deltas[4] && deltas[2] <= deltas[4] && deltas[3] <= deltas[4] && deltas[5] <= deltas[4] && deltas[6] <= deltas[4] && deltas[7] <= deltas[4] && deltas[8] <  deltas[4]
+	) 
+		return hasPeak
+	
+	return false
+
+fire = (e) ->
   if(e.deltaY < 0)
     nextImageClick()
   else
     prevImageClick()
-  #console.log(e.originalEvent.deltaY)
-  #clearTimeout(scrollTimer);
+
+mouseWheel = (e) ->
   
- 
+	e.preventDefault()
+	delta = 0
+	
+	if e.type == 'mousewheel'
+		delta = e.originalEvent.wheelDeltaY * -1
+	else
+		delta = 40 * e.originalEvent.detail
 
   
-  return mouseWheel
+	console.log('delta ' + delta)
+	
+	if (hasPeak()) 
+    lock = 10;
+    fire(e)
+  else if ((deltas[8] == null || deltas[8] == 120) && Math.abs(delta) == 120)
+    fire(e)
+  
+	deltas.shift()
+	deltas.push(Math.abs(delta))
+	
+	return mouseWheel
 
 setScrollTop = ->
   window.scrollTop = $window.scrollTop()
