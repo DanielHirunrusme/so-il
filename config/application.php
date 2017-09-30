@@ -75,9 +75,9 @@ if (!defined('ABSPATH')) {
 }
 
 $envs = array(
-  'development' => 'http://so-il.dev/',
+  'development' => 'http://dev.so-il.org',
   'archive'     => 'http://2016.so-il.org',
-  'staging'     => 'http://so-il.org',
+  'staging'     => 'http://dev.so-il.org',
   'scrolling'   => 'http://scrolling.so-il.org',
   'production'  => 'http://so-il.org'
 );
