@@ -57,7 +57,7 @@ namespace :deploy do
 end
 
 before "deploy:updated", "deploy:set_permissions:acl"
-#after "deploy:symlink:release", "deploy:fix_permissions"
+after "deploy:symlink:release", "deploy:fix_permissions"
 
 task :path do
   on roles fetch(:composer_roles) do
