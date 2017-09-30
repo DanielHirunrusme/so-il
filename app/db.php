@@ -1,1 +1,0 @@
-/Users/abautist/Documents/so-il/bedrock/app/plugins/query-monitor/wp-content/db.php
