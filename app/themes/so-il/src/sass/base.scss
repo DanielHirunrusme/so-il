@@ -269,7 +269,7 @@ nav {
 .content {
   @include container(content);
   padding-top: $content-padding;
-  padding-bottom: $line-height + $body-padding;
+  padding-bottom: $body-padding;
   -webkit-text-size-adjust: 100%;
   
   ul {
@@ -378,11 +378,17 @@ nav {
   width: $two-columns;
   z-index: 12000;
   
+  &.fixed {
+	  position:fixed;
+	  bottom:$body-padding;
+	  margin-left:-$body-padding;
+	  top:auto;
+  }
+  
   &.sticky {
     position:fixed;
-    position:fixed;
-    top:1.7em;
-    margin-left:-$body-padding/2;
+    top:$body-padding;
+    margin-left:-$body-padding;
     .inner {
           
     }

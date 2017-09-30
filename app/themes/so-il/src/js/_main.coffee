@@ -313,7 +313,7 @@ fixStickyContainerPosition = ->
     sl = Math.max 0, $window.scrollLeft()
     top = Math.max getLineHeight(), stickyTop - st
     left = -Math.min parseInt($('body').css('min-width')) - $window.width(), sl
-    $sticky.css top: top, marginLeft: Math.min 0, left
+    #$sticky.css top: top, marginLeft: Math.min 0, left
     return fixStickyContainerPosition
   else
     return false
@@ -447,40 +447,56 @@ setCurrentBlockByMouse = (e) ->
   return setCurrentBlockByMouse
 
 scrollOverview = ->
-  console.log('scroll overview')
-  console.log($('body').scrollTop())
-  
-  padding = $('.banner').position().top + $('.banner').height();
-  console.log(padding)
-  if $('body').scrollTop() > padding 
+
+	padding = $('.banner').position().top + $('.banner').height();
+	pr = Number( $('.content').css('padding-right').split('px').join('') )
+	
+	$('.overview-block .text').css('width', $('body').outerWidth() * .444 - pr / 2 )
+	
+	if( padding + $('.overview-block .text').height() < $(window).height())
+	  
+	  if $(window).scrollTop() > padding 
     
-    pageH = $('body')[0].scrollHeight - $window.height();
-    pageT = $('body').scrollTop()
+	    pageH = $('body')[0].scrollHeight - $window.height();
+	    pageT = $(window).scrollTop()
     
-    yPos = pageT - padding
-    #yPos = -yPos
-    $('.overview-block .text').addClass('sticky')
-    #$('.overview-block .text').css({"-webkit-transform":"translate(0px,"+yPos+"px)"});​
-  else
-    $('.overview-block .text').removeClass('sticky')
+	    yPos = pageT - padding
+	    #yPos = -yPos
+	    $('.overview-block .text').addClass('sticky').removeClass('fixed')
+	    #$('.overview-block .text').css({"-webkit-transform":"translate(0px,"+yPos+"px)"});​
+	  else
+	    $('.overview-block .text').removeClass('sticky')
+	else
+		pb = Number( $('.content').css('padding-bottom').split('px').join('') )
+		
+		if $(window).scrollTop() > padding + $('.overview-block .text').height() - $(window).height() + pb && !$('.container').hasClass('fixed')
+			$('.overview-block .text').addClass('fixed').removeClass('sticky')
+		else
+			$('.overview-block .text').removeClass('fixed')
     
 scrollOverviewRelated = ->
 
-  console.log($('body').scrollTop())
-  
-  padding = $('.banner').position().top + $('.banner').height();
-  console.log(padding)
-  if $('body').scrollTop() > padding 
-    
-    pageH = $('body')[0].scrollHeight - $window.height();
-    pageT = $('body').scrollTop()
-    
-    yPos = pageT - padding
-    #yPos = -yPos
-    $('.related-right').addClass('sticky')
-    #$('.overview-block .text').css({"-webkit-transform":"translate(0px,"+yPos+"px)"});​
-  else
-    $('.related-right').removeClass('sticky')
+	padding = $('.banner').position().top + $('.banner').height();
+	pr = Number( $('.content').css('padding-right').split('px').join('') )
+	ovr = Number( $('.overview-block .text .inner').css('padding-right').split('px').join('') )
+	
+	$('.related-right').css('width', $('body').outerWidth() * .222 - pr / 2 )
+	
+	if( padding + $('.related-right .inner').height() < $(window).height())
+		if $(window).scrollTop() > padding
+			leftPos = $('body').width() - $('.related-right').width()
+			$('.related-right').addClass('sticky').removeClass('fixed').css('left', leftPos)
+		else
+	    $('.related-right').removeClass('sticky').css('left', '')
+	else
+		pb = Number( $('.content').css('padding-bottom').split('px').join('') )
+		console.log($(window).scrollTop())
+		console.log(padding + $('.related-right .inner').height() - $(window).height() + pb)
+		if $(window).scrollTop() > padding + $('.related-right .inner').height() - $(window).height() + (pb*2)
+			leftPos = $('body').width() - $('.related-right').width()
+			$('.related-right').addClass('fixed').css('left', leftPos).removeClass('sticky')
+		else
+			$('.related-right').removeClass('fixed').css('left', '')
 
 scrollRelated = ->
 
@@ -577,28 +593,39 @@ setCurrentOverviewImage = ->
   
 
 setContentSticky = ->
-  console.log('setContentSticky')
+  
   $('.sticky-container').addClass('all-visible')
+  
+  pb = Number( $('.content').css('padding-bottom').split('px').join('') )
+  pr = Number( $('.content').css('padding-right').split('px').join('') )
+  ovr = Number( $('.overview-block .text .inner').css('padding-right').split('px').join('') )
+  
+  console.log('pb ' + pr)
+  
+  tp = $('.overview-block .sticky-container .container').height() + $('.overview-block').position().top - $(window).height() + (pb*4)
+  
+  $('.overview-block .sticky-container .container').css('width', $('body').outerWidth() * .333 - ovr)
+  
+  console.log(tp)
+  console.log($('body').scrollTop())
+  
+  
+  if($(window).scrollTop() > tp) 
+	  leftCont = $('.overview-block .text').width() + ovr*1.5
+	  $('.overview-block .sticky-container .container').addClass('fixed').css('left', leftCont)
+  else
+	  $('.overview-block .sticky-container .container').removeClass('fixed').css('left', '')
   
   setContentSticky
 
 setCurrentFootnoteOverview = ->
   
-  if($('.overview-block').position().top + $('.overview-block').height() < $(window).height())
-    setContentSticky()
-    scrollOverview()
-    if($('.related-right').height() < $(window).height())
-      scrollOverviewRelated()
-  else
-    setCurrentOverviewImage()
-  
-  setStickyContainers()
-  
-  scrollRelated()
-  
-  
-  
-  setCurrentFootnoteOverview
+	setContentSticky()
+	scrollOverviewRelated()
+	scrollOverview()
+	setStickyContainers()
+	
+	setCurrentFootnoteOverview
 
 setCurrentFootnote = ->
   window.$footnotes or= $($('.footnote').get().reverse())

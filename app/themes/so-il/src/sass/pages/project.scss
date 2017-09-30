@@ -9,9 +9,18 @@
         position:fixed;
         top:$body-padding - $body-padding/10;
         .inner {
-              margin-right: $body-padding/2;
+              //margin-right: $body-padding/2;
         }
       }
+	  
+	  &.fixed {
+		  position:fixed;
+		  bottom:$body-padding;
+		  
+          .inner {
+                //margin-right: $body-padding/2;
+          }
+	  }
     }
   }
   
@@ -117,9 +126,31 @@
       &.all-visible {
         position:absolute;
         top:0 !important;
+		
+		.container {
+			
+			@include under-min-width {
+				margin-left:-$body-padding/2;
+			}	
+			
+			&.fixed {
+				
+				@include under-min-width {
+					margin-left:0;
+				}
+				
+				position:fixed;
+				top:auto !important;
+				bottom:$body-padding;
+			}
+		}
         
         .image {
           position:relative;
+		  
+		  &:last-child {
+			  margin-bottom:0;
+		  }
           
           .background {
             @include opacity(1);
@@ -296,6 +327,9 @@
     
     .related-right {
       display:none;
+	  
+	  
+	  
     }
     
     .caption-inner {
