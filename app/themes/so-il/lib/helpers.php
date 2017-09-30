@@ -85,7 +85,7 @@ function the_extended_project_title($id = false)
   if (get_post_year($post)) {
     $parts[] = get_post_year($post);
   }
-  echo implode($parts, " ");
+  echo implode($parts, "");
 }
 
 function get_date_field($format=DEFAULT_DATE_FORMAT, $key='date')

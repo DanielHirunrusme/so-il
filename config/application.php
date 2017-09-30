@@ -4,15 +4,8 @@ $root_dir = dirname(dirname(__FILE__));
 /**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-
-//$dotenv = (new \Dotenv\Dotenv(__DIR__.'/../'))->load($root_dir);
-
-$dotenv = new Dotenv\Dotenv($root_dir);
-$dotenv->load();
-$dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
-
-//Dotenv::load($root_dir);
-//Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL'));
+Dotenv::load($root_dir);
+Dotenv::required(array('DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL'));
 
 /**
  * Set up our global environment constant and load its config first
@@ -75,9 +68,9 @@ if (!defined('ABSPATH')) {
 }
 
 $envs = array(
-  'development' => 'http://dev.so-il.org',
+  'development' => 'http://bedrock.dev/',
   'archive'     => 'http://2016.so-il.org',
-  'staging'     => 'http://dev.so-il.org',
+  'staging'     => 'http://so-il.org',
   'scrolling'   => 'http://scrolling.so-il.org',
   'production'  => 'http://so-il.org'
 );

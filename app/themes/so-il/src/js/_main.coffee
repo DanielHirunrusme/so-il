@@ -487,7 +487,7 @@ scrollOverview = ->
 	else
 		pb = Number( $('.content').css('padding-bottom').split('px').join('') )
 		
-		if $(window).scrollTop() > padding + $('.overview-block .text').height() - $(window).height() + pb && !$('.container').hasClass('fixed')
+		if $(window).scrollTop() > padding + $('.overview-block .text').height() - $(window).height() + (pb*2) && !$('.container').hasClass('fixed')
 			$('.overview-block .text').addClass('fixed').removeClass('sticky')
 		else
 			$('.overview-block .text').removeClass('fixed')

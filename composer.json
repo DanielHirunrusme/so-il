@@ -36,7 +36,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "https://wpackagist.org"
+      "url": "http://wpackagist.org"
     },
     {
       "type": "package",
@@ -60,11 +60,10 @@
     "fancyguy/webroot-installer": "1.1.0",
     "composer/installers": "v1.0.6",
     "wp-cli/wp-cli": "v0.13.0",
-    "vlucas/phpdotenv": "^2.4",
+    "vlucas/phpdotenv": "~1.0.5",
     "roots/wp-stage-switcher": "1.0.0",
     "wpackagist/advanced-custom-fields": "*@dev",
     "wpackagist/wp-super-cache": "*@dev",
-    "wpackagist-plugin/clean-and-simple-contact-form-by-meg-nicholas": "dev-trunk",
     "wpackagist/regenerate-thumbnails": "*@dev",
     "wpackagist/wp-smushit": "*@dev"
   },

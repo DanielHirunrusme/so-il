@@ -7,12 +7,3 @@
 require_once('vendor/autoload.php');
 require_once('config/application.php');
 require_once(ABSPATH . 'wp-settings.php');
-
-define('WP_CACHE', true); //Added by WP-Cache Manager
-if ( ! defined( 'SAVEQUERIES' ) ) {
-  define( 'SAVEQUERIES', true );
-}
-
-define('WP_DEBUG', true); //Added by WP-Cache Manager
-
-define( 'WP_MEMORY_LIMIT', '96MB' );

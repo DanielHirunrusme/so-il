@@ -8,8 +8,8 @@ set :stage, :archive
 
 # Extended Server Syntax
 # ======================
-server '162.243.18.32', user: 'deploy', roles: %w{web app db}
-set :deploy_to, "~/2016.so-il.org"
+server '192.241.189.119', user: 'deploy', roles: %w{web app db}
+set :deploy_to, "~/archive.so-il.org"
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

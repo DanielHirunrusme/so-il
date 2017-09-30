@@ -8,7 +8,7 @@ set :stage, :staging
 
 # Extended Server Syntax
 # ======================
-server '162.243.18.32', user: 'deploy', roles: %w{web app db}
+server '192.241.189.119', user: 'deploy', roles: %w{web app db}
 set :deploy_to, "~/dev.so-il.org"
 
 #set :ssh_options, {

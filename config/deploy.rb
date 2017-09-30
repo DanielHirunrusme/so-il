@@ -1,6 +1,6 @@
 set :application, 'so-il'
 
-set :repo_url, 'git@github.com:DanielHirunrusme/soil.git'
+set :repo_url, 'git@github.com:DanielHirunrusme/so-il.git'
 
 # Branch options
 # Prompts for the branch name (defaults to current branch)
@@ -19,9 +19,6 @@ set :log_level, :debug
 
 set :linked_files, %w{.env .htaccess app/wp-cache-config.php}
 set :linked_dirs, %w{app/uploads app/cache}
-
-set :file_permissions_paths, ["app/cache"]
-set :file_permissions_users, ["www-data"]
 
 namespace :git do
   task :update_repo_url do
@@ -56,8 +53,7 @@ namespace :deploy do
 
 end
 
-before "deploy:updated", "deploy:set_permissions:acl"
-after "deploy:symlink:release", "deploy:fix_permissions"
+#after "deploy:symlink:release", "deploy:fix_permissions"
 
 task :path do
   on roles fetch(:composer_roles) do
