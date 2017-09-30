@@ -1,5 +1,5 @@
 # WordPress
-wp
+#wp
 #.htaccess
 
 # WP-CLI
@@ -13,16 +13,16 @@ sql-dump-*.sql
 
 # Application
 app/uploads
-app/upgrade
-app/plugins/*
-!app/plugins/.gitkeep
-!app/plugins/acf-*
-app/mu-plugins/*
-!app/mu-plugins/register-theme-directory.php
+#app/upgrade
+#app/plugins/*
+#!app/plugins/.gitkeep
+#!app/plugins/acf-*
+#app/mu-plugins/*
+#!app/mu-plugins/register-theme-directory.php
 
 # Vendor (e.g. Composer)
-vendor/*
-!vendor/.gitkeep
+#vendor/*
+#!vendor/.gitkeep
 
 # Node Package Manager
 node_modules
