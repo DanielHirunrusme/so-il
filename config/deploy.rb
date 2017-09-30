@@ -1,6 +1,6 @@
 set :application, 'so-il'
 
-set :repo_url, 'git@github.com:DanielHirunrusme/so-il.git'
+set :repo_url, 'git@github.com:DanielHirunrusme/soil.git'
 
 # Branch options
 # Prompts for the branch name (defaults to current branch)
