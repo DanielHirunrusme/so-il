@@ -13,4 +13,6 @@ if ( ! defined( 'SAVEQUERIES' ) ) {
   define( 'SAVEQUERIES', true );
 }
 
+define('WP_DEBUG', true); //Added by WP-Cache Manager
+
 define( 'WP_MEMORY_LIMIT', '96MB' );
