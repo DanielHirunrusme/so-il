@@ -8,7 +8,7 @@ set :stage, :production
 
 # Extended Server Syntax
 # ======================
-server '162.243.27.147', user: 'deploy', roles: %w{web app db}
+server '162.243.18.32', user: 'deploy', roles: %w{web app db}
 set :deploy_to, "~/so-il.org"
 
 # you can set custom ssh options
