@@ -8,7 +8,7 @@ define('DB_HOST', getenv('DB_HOST') ? getenv('DB_HOST') : 'localhost');
 define('WP_HOME', getenv('WP_HOME'));
 define('WP_SITEURL', getenv('WP_SITEURL'));
 
-ini_set('display_errors', 0);
-define('WP_DEBUG_DISPLAY', false);
-define('SCRIPT_DEBUG', false);
-//define( 'WP_DEBUG', true );
+ini_set('display_errors', 1);
+define('WP_DEBUG_DISPLAY', true);
+define('SCRIPT_DEBUG', true);
+define( 'WP_DEBUG', true );
