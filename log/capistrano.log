@@ -1038,3 +1038,155 @@ f0bcff39f965382bd00fd77f9153b4dbfc6fdb95
   INFO [504f129d] Running /usr/bin/env echo "Branch master (at 1877bf41c515ec42acc28e95ef0e7c811e304e41) deployed as release 20170930204510 by MattheTsang" >> ~/dev.so-il.org/revisions.log as deploy@162.243.18.32
  DEBUG [504f129d] Command: cd ~/dev.so-il.org/releases && ( export WP_ENV="staging" ; /usr/bin/env echo "Branch master (at 1877bf41c515ec42acc28e95ef0e7c811e304e41) deployed as release 20170930204510 by MattheTsang" >> ~/dev.so-il.org/revisions.log )
   INFO [504f129d] Finished in 0.218 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-10-02 09:49:15 -0500 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [cef6d3f6] Running /usr/bin/env mkdir -p /tmp as deploy@162.243.18.32
+ DEBUG [cef6d3f6] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p /tmp )
+  INFO [cef6d3f6] Finished in 4.160 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-so-il-staging-MattheTsang.sh 0.0%
+  INFO Uploading /tmp/git-ssh-so-il-staging-MattheTsang.sh 100.0%
+  INFO [3f29824d] Running /usr/bin/env chmod 700 /tmp/git-ssh-so-il-staging-MattheTsang.sh as deploy@162.243.18.32
+ DEBUG [3f29824d] Command: ( export WP_ENV="staging" ; /usr/bin/env chmod 700 /tmp/git-ssh-so-il-staging-MattheTsang.sh )
+  INFO [3f29824d] Finished in 0.204 seconds with exit status 0 (successful).
+  INFO [93de2e27] Running /usr/bin/env git ls-remote git@github.com:DanielHirunrusme/so-il.git HEAD as deploy@162.243.18.32
+ DEBUG [93de2e27] Command: ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env git ls-remote git@github.com:DanielHirunrusme/so-il.git HEAD )
+ DEBUG [93de2e27] 	446b6366fb4ba3efe973c15a0c3a05f15b36a233	HEAD
+  INFO [93de2e27] Finished in 0.537 seconds with exit status 0 (successful).
+  INFO [adb173ee] Running /usr/bin/env mkdir -p ~/dev.so-il.org/shared ~/dev.so-il.org/releases as deploy@162.243.18.32
+ DEBUG [adb173ee] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p ~/dev.so-il.org/shared ~/dev.so-il.org/releases )
+  INFO [adb173ee] Finished in 0.498 seconds with exit status 0 (successful).
+  INFO [2271f594] Running /usr/bin/env mkdir -p ~/dev.so-il.org/shared/app/uploads ~/dev.so-il.org/shared/app/cache as deploy@162.243.18.32
+ DEBUG [2271f594] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p ~/dev.so-il.org/shared/app/uploads ~/dev.so-il.org/shared/app/cache )
+  INFO [2271f594] Finished in 0.165 seconds with exit status 0 (successful).
+  INFO [a7fbecca] Running /usr/bin/env mkdir -p ~/dev.so-il.org/shared ~/dev.so-il.org/shared/app as deploy@162.243.18.32
+ DEBUG [a7fbecca] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p ~/dev.so-il.org/shared ~/dev.so-il.org/shared/app )
+  INFO [a7fbecca] Finished in 0.201 seconds with exit status 0 (successful).
+ DEBUG [9fdb6206] Running [ -f ~/dev.so-il.org/shared/.env ] as deploy@162.243.18.32
+ DEBUG [9fdb6206] Command: [ -f ~/dev.so-il.org/shared/.env ]
+ DEBUG [9fdb6206] Finished in 0.203 seconds with exit status 0 (successful).
+ DEBUG [cad17b44] Running [ -f ~/dev.so-il.org/shared/.htaccess ] as deploy@162.243.18.32
+ DEBUG [cad17b44] Command: [ -f ~/dev.so-il.org/shared/.htaccess ]
+ DEBUG [cad17b44] Finished in 0.203 seconds with exit status 0 (successful).
+ DEBUG [424eefd6] Running [ -f ~/dev.so-il.org/shared/app/wp-cache-config.php ] as deploy@162.243.18.32
+ DEBUG [424eefd6] Command: [ -f ~/dev.so-il.org/shared/app/wp-cache-config.php ]
+ DEBUG [424eefd6] Finished in 0.198 seconds with exit status 0 (successful).
+ DEBUG [bb3274ca] Running [ -f ~/dev.so-il.org/current/REVISION ] as deploy@162.243.18.32
+ DEBUG [bb3274ca] Command: [ -f ~/dev.so-il.org/current/REVISION ]
+ DEBUG [bb3274ca] Finished in 0.201 seconds with exit status 0 (successful).
+ DEBUG [db4c9c00] Running /usr/bin/env cat ~/dev.so-il.org/current/REVISION 2>/dev/null as deploy@162.243.18.32
+ DEBUG [db4c9c00] Command: ( export WP_ENV="staging" ; /usr/bin/env cat ~/dev.so-il.org/current/REVISION 2>/dev/null )
+ DEBUG [db4c9c00] 	97d4cd08616e2b6c68b9e21d72b2c580edead61e
+1877bf41c515ec42acc28e95ef0e7c811e304e41
+ DEBUG [db4c9c00] Finished in 0.216 seconds with exit status 0 (successful).
+ DEBUG [bde75dd6] Running [ -f ~/dev.so-il.org/repo/HEAD ] as deploy@162.243.18.32
+ DEBUG [bde75dd6] Command: [ -f ~/dev.so-il.org/repo/HEAD ]
+ DEBUG [bde75dd6] Finished in 0.195 seconds with exit status 0 (successful).
+  INFO The repository mirror is at ~/dev.so-il.org/repo
+ DEBUG [1d7d5b0e] Running if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi as deploy@162.243.18.32
+ DEBUG [1d7d5b0e] Command: if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi
+ DEBUG [1d7d5b0e] Finished in 0.201 seconds with exit status 0 (successful).
+  INFO [fac9a696] Running /usr/bin/env git remote set-url origin git@github.com:DanielHirunrusme/so-il.git as deploy@162.243.18.32
+ DEBUG [fac9a696] Command: cd ~/dev.so-il.org/repo && ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env git remote set-url origin git@github.com:DanielHirunrusme/so-il.git )
+  INFO [fac9a696] Finished in 0.215 seconds with exit status 0 (successful).
+  INFO [cbd5f30e] Running /usr/bin/env git remote update --prune as deploy@162.243.18.32
+ DEBUG [cbd5f30e] Command: cd ~/dev.so-il.org/repo && ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [cbd5f30e] 	Fetching origin
+ DEBUG [cbd5f30e] 	From github.com:DanielHirunrusme/so-il
+ DEBUG [cbd5f30e] 	   1877bf4..446b636  master     -> master
+  INFO [cbd5f30e] Finished in 1.913 seconds with exit status 0 (successful).
+ DEBUG [fd82965d] Running if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi as deploy@162.243.18.32
+ DEBUG [fd82965d] Command: if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi
+ DEBUG [fd82965d] Finished in 0.204 seconds with exit status 0 (successful).
+  INFO [17248f7e] Running /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922 as deploy@162.243.18.32
+ DEBUG [17248f7e] Command: cd ~/dev.so-il.org/repo && ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922 )
+  INFO [17248f7e] Finished in 0.198 seconds with exit status 0 (successful).
+  INFO [9e93c160] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C ~/dev.so-il.org/releases/20171002144922 as deploy@162.243.18.32
+ DEBUG [9e93c160] Command: cd ~/dev.so-il.org/repo && ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C ~/dev.so-il.org/releases/20171002144922 )
+  INFO [9e93c160] Finished in 1.270 seconds with exit status 0 (successful).
+ DEBUG [94da28b3] Running if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi as deploy@162.243.18.32
+ DEBUG [94da28b3] Command: if test ! -d ~/dev.so-il.org/repo; then echo "Directory does not exist '~/dev.so-il.org/repo'" 1>&2; false; fi
+ DEBUG [94da28b3] Finished in 0.165 seconds with exit status 0 (successful).
+ DEBUG [f2c9c860] Running /usr/bin/env git rev-list --max-count=1 master as deploy@162.243.18.32
+ DEBUG [f2c9c860] Command: cd ~/dev.so-il.org/repo && ( export WP_ENV="staging" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-so-il-staging-MattheTsang.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [f2c9c860] 	446b6366fb4ba3efe973c15a0c3a05f15b36a233
+ DEBUG [f2c9c860] Finished in 0.223 seconds with exit status 0 (successful).
+ DEBUG [913b4b59] Running if test ! -d ~/dev.so-il.org/releases/20171002144922; then echo "Directory does not exist '~/dev.so-il.org/releases/20171002144922'" 1>&2; false; fi as deploy@162.243.18.32
+ DEBUG [913b4b59] Command: if test ! -d ~/dev.so-il.org/releases/20171002144922; then echo "Directory does not exist '~/dev.so-il.org/releases/20171002144922'" 1>&2; false; fi
+ DEBUG [913b4b59] Finished in 0.203 seconds with exit status 0 (successful).
+  INFO [faaefc86] Running /usr/bin/env echo "446b6366fb4ba3efe973c15a0c3a05f15b36a233" >> REVISION as deploy@162.243.18.32
+ DEBUG [faaefc86] Command: cd ~/dev.so-il.org/releases/20171002144922 && ( export WP_ENV="staging" ; /usr/bin/env echo "446b6366fb4ba3efe973c15a0c3a05f15b36a233" >> REVISION )
+  INFO [faaefc86] Finished in 0.202 seconds with exit status 0 (successful).
+  INFO [67bd32b0] Running /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922 ~/dev.so-il.org/releases/20171002144922/app as deploy@162.243.18.32
+ DEBUG [67bd32b0] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922 ~/dev.so-il.org/releases/20171002144922/app )
+  INFO [67bd32b0] Finished in 0.198 seconds with exit status 0 (successful).
+ DEBUG [3782b82f] Running [ -L ~/dev.so-il.org/releases/20171002144922/.env ] as deploy@162.243.18.32
+ DEBUG [3782b82f] Command: [ -L ~/dev.so-il.org/releases/20171002144922/.env ]
+ DEBUG [3782b82f] Finished in 0.200 seconds with exit status 1 (failed).
+ DEBUG [e707fb56] Running [ -f ~/dev.so-il.org/releases/20171002144922/.env ] as deploy@162.243.18.32
+ DEBUG [e707fb56] Command: [ -f ~/dev.so-il.org/releases/20171002144922/.env ]
+ DEBUG [e707fb56] Finished in 0.205 seconds with exit status 1 (failed).
+  INFO [9d5b8e06] Running /usr/bin/env ln -s ~/dev.so-il.org/shared/.env ~/dev.so-il.org/releases/20171002144922/.env as deploy@162.243.18.32
+ DEBUG [9d5b8e06] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/shared/.env ~/dev.so-il.org/releases/20171002144922/.env )
+  INFO [9d5b8e06] Finished in 0.211 seconds with exit status 0 (successful).
+ DEBUG [786b1d07] Running [ -L ~/dev.so-il.org/releases/20171002144922/.htaccess ] as deploy@162.243.18.32
+ DEBUG [786b1d07] Command: [ -L ~/dev.so-il.org/releases/20171002144922/.htaccess ]
+ DEBUG [786b1d07] Finished in 0.201 seconds with exit status 1 (failed).
+ DEBUG [dc6c2513] Running [ -f ~/dev.so-il.org/releases/20171002144922/.htaccess ] as deploy@162.243.18.32
+ DEBUG [dc6c2513] Command: [ -f ~/dev.so-il.org/releases/20171002144922/.htaccess ]
+ DEBUG [dc6c2513] Finished in 0.210 seconds with exit status 0 (successful).
+  INFO [465e4bfc] Running /usr/bin/env rm ~/dev.so-il.org/releases/20171002144922/.htaccess as deploy@162.243.18.32
+ DEBUG [465e4bfc] Command: ( export WP_ENV="staging" ; /usr/bin/env rm ~/dev.so-il.org/releases/20171002144922/.htaccess )
+  INFO [465e4bfc] Finished in 0.219 seconds with exit status 0 (successful).
+  INFO [7b458628] Running /usr/bin/env ln -s ~/dev.so-il.org/shared/.htaccess ~/dev.so-il.org/releases/20171002144922/.htaccess as deploy@162.243.18.32
+ DEBUG [7b458628] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/shared/.htaccess ~/dev.so-il.org/releases/20171002144922/.htaccess )
+  INFO [7b458628] Finished in 0.217 seconds with exit status 0 (successful).
+ DEBUG [add3ece3] Running [ -L ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php ] as deploy@162.243.18.32
+ DEBUG [add3ece3] Command: [ -L ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php ]
+ DEBUG [add3ece3] Finished in 0.198 seconds with exit status 1 (failed).
+ DEBUG [9600d4d6] Running [ -f ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php ] as deploy@162.243.18.32
+ DEBUG [9600d4d6] Command: [ -f ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php ]
+ DEBUG [9600d4d6] Finished in 0.207 seconds with exit status 0 (successful).
+  INFO [b54285b8] Running /usr/bin/env rm ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php as deploy@162.243.18.32
+ DEBUG [b54285b8] Command: ( export WP_ENV="staging" ; /usr/bin/env rm ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php )
+  INFO [b54285b8] Finished in 0.210 seconds with exit status 0 (successful).
+  INFO [4cdc37b5] Running /usr/bin/env ln -s ~/dev.so-il.org/shared/app/wp-cache-config.php ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php as deploy@162.243.18.32
+ DEBUG [4cdc37b5] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/shared/app/wp-cache-config.php ~/dev.so-il.org/releases/20171002144922/app/wp-cache-config.php )
+  INFO [4cdc37b5] Finished in 0.213 seconds with exit status 0 (successful).
+  INFO [2d32fc22] Running /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922/app as deploy@162.243.18.32
+ DEBUG [2d32fc22] Command: ( export WP_ENV="staging" ; /usr/bin/env mkdir -p ~/dev.so-il.org/releases/20171002144922/app )
+  INFO [2d32fc22] Finished in 0.207 seconds with exit status 0 (successful).
+ DEBUG [5625c00e] Running [ -L ~/dev.so-il.org/releases/20171002144922/app/uploads ] as deploy@162.243.18.32
+ DEBUG [5625c00e] Command: [ -L ~/dev.so-il.org/releases/20171002144922/app/uploads ]
+ DEBUG [5625c00e] Finished in 0.203 seconds with exit status 1 (failed).
+ DEBUG [e13c9fc3] Running [ -d ~/dev.so-il.org/releases/20171002144922/app/uploads ] as deploy@162.243.18.32
+ DEBUG [e13c9fc3] Command: [ -d ~/dev.so-il.org/releases/20171002144922/app/uploads ]
+ DEBUG [e13c9fc3] Finished in 0.208 seconds with exit status 1 (failed).
+  INFO [986c5cc9] Running /usr/bin/env ln -s ~/dev.so-il.org/shared/app/uploads ~/dev.so-il.org/releases/20171002144922/app/uploads as deploy@162.243.18.32
+ DEBUG [986c5cc9] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/shared/app/uploads ~/dev.so-il.org/releases/20171002144922/app/uploads )
+  INFO [986c5cc9] Finished in 0.296 seconds with exit status 0 (successful).
+ DEBUG [31cd295f] Running [ -L ~/dev.so-il.org/releases/20171002144922/app/cache ] as deploy@162.243.18.32
+ DEBUG [31cd295f] Command: [ -L ~/dev.so-il.org/releases/20171002144922/app/cache ]
+ DEBUG [31cd295f] Finished in 0.307 seconds with exit status 1 (failed).
+ DEBUG [8348740e] Running [ -d ~/dev.so-il.org/releases/20171002144922/app/cache ] as deploy@162.243.18.32
+ DEBUG [8348740e] Command: [ -d ~/dev.so-il.org/releases/20171002144922/app/cache ]
+ DEBUG [8348740e] Finished in 0.201 seconds with exit status 1 (failed).
+  INFO [dbdf050b] Running /usr/bin/env ln -s ~/dev.so-il.org/shared/app/cache ~/dev.so-il.org/releases/20171002144922/app/cache as deploy@162.243.18.32
+ DEBUG [dbdf050b] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/shared/app/cache ~/dev.so-il.org/releases/20171002144922/app/cache )
+  INFO [dbdf050b] Finished in 0.201 seconds with exit status 0 (successful).
+  INFO [88a71e5f] Running /usr/bin/env ln -s ~/dev.so-il.org/releases/20171002144922 ~/dev.so-il.org/releases/current as deploy@162.243.18.32
+ DEBUG [88a71e5f] Command: ( export WP_ENV="staging" ; /usr/bin/env ln -s ~/dev.so-il.org/releases/20171002144922 ~/dev.so-il.org/releases/current )
+  INFO [88a71e5f] Finished in 0.199 seconds with exit status 0 (successful).
+  INFO [b595e5a6] Running /usr/bin/env mv ~/dev.so-il.org/releases/current ~/dev.so-il.org as deploy@162.243.18.32
+ DEBUG [b595e5a6] Command: ( export WP_ENV="staging" ; /usr/bin/env mv ~/dev.so-il.org/releases/current ~/dev.so-il.org )
+  INFO [b595e5a6] Finished in 0.195 seconds with exit status 0 (successful).
+ DEBUG [cb4e445f] Running /usr/bin/env ls -x ~/dev.so-il.org/releases as deploy@162.243.18.32
+ DEBUG [cb4e445f] Command: ( export WP_ENV="staging" ; /usr/bin/env ls -x ~/dev.so-il.org/releases )
+ DEBUG [cb4e445f] 	20170930202545	20170930204427	20170930204510	20171002144922
+ DEBUG [cb4e445f] Finished in 0.197 seconds with exit status 0 (successful).
+ DEBUG [90d5bdc9] Running if test ! -d ~/dev.so-il.org/releases; then echo "Directory does not exist '~/dev.so-il.org/releases'" 1>&2; false; fi as deploy@162.243.18.32
+ DEBUG [90d5bdc9] Command: if test ! -d ~/dev.so-il.org/releases; then echo "Directory does not exist '~/dev.so-il.org/releases'" 1>&2; false; fi
+ DEBUG [90d5bdc9] Finished in 0.201 seconds with exit status 0 (successful).
+  INFO [363dddb4] Running /usr/bin/env echo "Branch master (at 446b6366fb4ba3efe973c15a0c3a05f15b36a233) deployed as release 20171002144922 by MattheTsang" >> ~/dev.so-il.org/revisions.log as deploy@162.243.18.32
+ DEBUG [363dddb4] Command: cd ~/dev.so-il.org/releases && ( export WP_ENV="staging" ; /usr/bin/env echo "Branch master (at 446b6366fb4ba3efe973c15a0c3a05f15b36a233) deployed as release 20171002144922 by MattheTsang" >> ~/dev.so-il.org/revisions.log )
+  INFO [363dddb4] Finished in 0.201 seconds with exit status 0 (successful).
