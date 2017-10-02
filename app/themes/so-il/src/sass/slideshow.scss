@@ -253,7 +253,7 @@
       .background, .video-player {
         @include blur(0);
         @include opacity(1);
-      
+      	transition-duration:0s;
       }
     
     }
@@ -381,6 +381,35 @@
   
 }
 
+.contents-hidden {
+	.sticky-container {
+		.container {
+			width:100vw !important;
+			
+			@include under-min-width {
+				margin-left:0 !important;
+			}
+		}
+		
+		
+	}
+	
+	.caption {
+		min-width:$min-width;
+	}
+	
+	.background {
+		background-color:#fff;
+	}
+	
+	.image {
+		.inner {
+			img {
+				display:none !important;
+			}
+		}
+	}
+}
 
 
 .init-slideshow {

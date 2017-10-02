@@ -80,12 +80,13 @@ main = ($) ->
         $window.scroll fixHomeProjectPosition
         $window.on('mousewheel', mouseWheel)
         
-        watchProjectClicks()
+        
         setCurrentBlockByMouse()
         calculateExcerpts()
         bindArrowKeys()
         removeInitSlideshow()
-
+        
+        $('.block').on('click', watchProjectClicks)
         $('.block').setupBackgrounds()
         
         afterLoaded ->
@@ -111,7 +112,8 @@ main = ($) ->
         
         watchImageCallout()
         scrollRelated()
-
+        
+        $('.close').on 'click', overviewClick
 
       mobile: ->
         $('.image').setupBackgrounds()
@@ -161,7 +163,7 @@ main = ($) ->
 
     project_images:
       init: ->
-        watchProjectClicks()
+        $('.block').on('click', watchProjectClicks)
         #openFirstImage()
         console.log('desktop')
         
@@ -374,6 +376,21 @@ setCurrentBlock = ->
 
   return setCurrentBlock
 
+overviewClick = (e)->
+  
+  if $('body').hasClass('contents-hidden')
+    $('body').removeClass('contents-hidden')
+    $('.images').removeClass('popup')
+    $('.block').removeClass('active block-init')
+    $(window).off('mousewheel')
+    $('.block').off('click', watchProjectClicks)
+    $('body').trigger('scroll')
+    $('.background-image').css('display', '')
+    clearSlideshow()
+    e.preventDefault()
+  
+  return overviewClick
+
 nextImageClick = ->
   
   stopSlideshow()
@@ -390,8 +407,10 @@ prevImageClick = ->
 
 nextImage = ->
   
+  console.log('=========')
   console.log('%c[next Image]', 'color:blue')
   
+
   
   
   $featured = $('.image.block')
@@ -431,13 +450,17 @@ prevImage = ->
 
   
 initSlideshow = ->
-  
-  timerInt = setInterval(nextImage, 3000)
-  console.log('initSlideshow')
-  setCaptions();
+	if(!$('body').hasClass('contents-hidden'))
+  	#clearInterval(timerInt)
+  	#timerInt = setInterval(nextImage, 3000)
+  	#console.log('initSlideshow')
+  	#setCaptions();
   
   return initSlideshow
-  
+
+clearSlideshow = ->
+  clearInterval(timerInt)
+  clearTimeout(timeoutTimerInt)
   
 stopSlideshow = ->
   
@@ -502,7 +525,9 @@ scrollOverviewRelated = ->
 	
 	if( padding + $('.related-right .inner').height() < $(window).height())
 		if $(window).scrollTop() > padding
-			leftPos = $('body').width() - $('.related-right').width()
+			#leftPos = $('.overview-block').width() - $('.related-right').width() + ovr / 2 + pr / 2
+			leftPos = $('.content').outerWidth()  - $('.related-right').width() - 1
+			
 			$('.related-right').addClass('sticky').removeClass('fixed').css('left', leftPos)
 		else
 	    $('.related-right').removeClass('sticky').css('left', '')
@@ -511,7 +536,7 @@ scrollOverviewRelated = ->
 		console.log($(window).scrollTop())
 		console.log(padding + $('.related-right .inner').height() - $(window).height() + pb)
 		if $(window).scrollTop() > padding + $('.related-right .inner').height() - $(window).height() + (pb*2)
-			leftPos = $('body').width() - $('.related-right').width()
+			leftPos = $('.content').outerWidth()  - $('.related-right').width() - 1
 			$('.related-right').addClass('fixed').css('left', leftPos).removeClass('sticky')
 		else
 			$('.related-right').removeClass('fixed').css('left', '')
@@ -824,6 +849,7 @@ watchImageCallout = ->
       fakePage: false,
       selectImage: $(e.currentTarget).index()
 
+
 watchPageImageCallout = ->
   
   if $('.page-slideshow .thumbnail').length
@@ -997,15 +1023,16 @@ calculateExcerpts = ->
   raf ->
     $('.block').each (i, block) ->
       $(block).calculateExcerpt()
+      
+      
 
-watchProjectClicks = ->
-  $('.block').click (e) ->
+watchProjectClicks = (e) ->
+  
     e.preventDefault()
-    #console.log(e.target)
+    console.log(e.target)
     
     if onHome()
-      #if(!$(e.target).hasClass('slideshow-nav'))
-        #$(this).openSelectProjects()
+      
       if(!$(e.target).hasClass('slideshow-nav'))
         #$(this).openHref()
         
@@ -1015,7 +1042,7 @@ watchProjectClicks = ->
           prevImageClick()
     else
         
-      if(!$(e.target).hasClass('slideshow-nav') && !$('body').hasClass('contents-hidden'))
+      if(!$(e.target).hasClass('slideshow-nav'))
         #$(this).openHref()
         
         if e.clientX > $(window).width()*.5
@@ -1510,17 +1537,22 @@ $.fn.openPopup = (options = {}) ->
   return if $('.popup').length
   
   
-  
-  
   setTimeout ->
-      watchProjectClicks()
+      $('.block').on('click', watchProjectClicks)
+      #watchProjectClicks()
     , 500
+  
   
   $images = $('.image')
   $active = $('.image').eq( options.selectImage );
   $images.not($active).deactivate()
-  $images.active().showMedia()
   $images.inactive().hideMedia()
+  $images.active().showMedia()
+
+  $('.image.block-init').removeClass('block-init')
+  $('.image').eq( options.selectImage ).addClass('block-init active')
+  $('.background-image').css('display', 'block')
+
   
   $this = $(this)
   $container = $this.parents '.images'
@@ -1533,8 +1565,7 @@ $.fn.openPopup = (options = {}) ->
   #$images.css display: ''
   #$images.deactivate()
   $images.addCounters()
-  $images.setupBackgrounds()
-  
+  $images.setupBackgrounds() 
   
   if onMobile()    
     $container.addClass 'slideshow'
@@ -1552,9 +1583,7 @@ $.fn.openPopup = (options = {}) ->
   else
     $window.on('mousewheel', mouseWheel)
     
-    
-    
-    #calculateExcerpts()
+
     bindArrowKeys()
     
     $('.block-slideshow .block').first().addClass('active');

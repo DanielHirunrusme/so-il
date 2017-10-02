@@ -153,7 +153,7 @@
 		  }
           
           .background {
-            @include opacity(1);
+            //@include opacity(1);
           }
         }
       }
@@ -223,6 +223,12 @@
       .inner {
         //margin-top:1em;
       }
+	  
+	  .background {
+		  img {
+			  display:none;
+		  }
+	  }
     }
     
     .related {
@@ -303,7 +309,7 @@
       .background,
       .background img,
       .video-player img {
-        display: block !important;
+        //display: block !important;
       }
       
       .video-player {
@@ -499,4 +505,8 @@
       background-position: 0 -18px;
     }
   }
+}
+
+.block-inner {
+	min-width:$min-width;
 }
