@@ -1027,7 +1027,7 @@ calculateExcerpts = ->
       
 
 watchProjectClicks = (e) ->
-  
+    e.stopPropagation()
     e.preventDefault()
     console.log(e.target)
     
@@ -1035,13 +1035,13 @@ watchProjectClicks = (e) ->
       
       if(!$(e.target).hasClass('slideshow-nav'))
         #$(this).openHref()
-        
+ 
         if e.clientX > $(window).width()*.5
           nextImageClick()
         else
           prevImageClick()
     else
-        
+    
       if(!$(e.target).hasClass('slideshow-nav'))
         #$(this).openHref()
         
@@ -1536,6 +1536,7 @@ $.fn.makeSlideshow = (options = {}) ->
 $.fn.openPopup = (options = {}) ->
   return if $('.popup').length
   
+  $('.block').off('click', watchProjectClicks)
   
   setTimeout ->
       $('.block').on('click', watchProjectClicks)
