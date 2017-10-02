@@ -59,6 +59,12 @@
   <?php while ($query->have_posts()) : $query->the_post(); ?>
     <?php $type = get_template_type(); ?>
     
+    <?php
+    
+      update_post_meta( $post->ID, 'is_first_large', 1 );
+      
+    ?>
+    
     <?php if (!$row): ?>
       <tr>
     <?php endif ?>

@@ -5,6 +5,8 @@
   <?php while (have_posts()) : the_post(); ?>
     <?php $type = get_template_type(); ?>
     
+    
+    
     <?php if (!$row): ?>
       <tr>
     <?php endif ?>
