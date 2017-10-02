@@ -385,7 +385,7 @@
 	.sticky-container {
 		.container {
 			width:100vw !important;
-			
+			left: 0 !important;
 			@include under-min-width {
 				margin-left:0 !important;
 			}
