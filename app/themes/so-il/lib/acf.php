@@ -587,6 +587,32 @@ if(function_exists("register_field_group"))
 				'default_value' => 0,
 			),
   */
+  
+  
+  /*
+  
+  This is the condition logic that hides the featured fields from the checkbox above
+  
+	'conditional_logic' => array (
+		'status' => 1,
+		'rules' => array (
+			array (
+				'field' => 'field_53268de7bd287',
+				'operator' => '==',
+				'value' => '1',
+			),
+			array (
+				'field' => 'field_539b3ed031eb4',
+				'operator' => '==',
+				'value' => 'excerpt_video',
+			),
+		),
+		'allorany' => 'all',
+	),
+  
+  */
+  
+  
 	register_field_group(array (
 		'id' => 'acf_project-details',
 		'title' => 'Project Details',
@@ -603,7 +629,7 @@ if(function_exists("register_field_group"))
 				'first_day' => 1,
 			),
 			array (
-				'key' => 'field_53268de7bd2878',
+				'key' => 'field_53268de7bd287833123',
 				'label' => 'First Line Large',
 				'name' => 'is_first_large',
 				'type' => 'true_false',
@@ -615,17 +641,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Feature Display Style',
 				'name' => 'feature_display_style',
 				'type' => 'select',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'choices' => array (
 					'excerpt' => 'Large Image',
 					'excerpt_video' => 'Large Video',
@@ -641,22 +657,7 @@ if(function_exists("register_field_group"))
 				'name' => 'featured_vimeo_id',
 				'type' => 'text',
 				'instructions' => 'e.g. the ID for a video at https://vimeo.com/93188598 would be 93188598',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '==',
-							'value' => 'excerpt_video',
-						),
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'default_value' => '',
 				'placeholder' => '',
 				'prepend' => 'https://vimeo.com/',
@@ -669,22 +670,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Sound',
 				'name' => 'featured_play_sound',
 				'type' => 'true_false',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '==',
-							'value' => 'excerpt_video',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'message' => 'Play sound?',
 				'default_value' => 0,
 			),
@@ -693,22 +679,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Featured Image',
 				'name' => 'homepage_image',
 				'type' => 'image',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '==',
-							'value' => 'excerpt',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'save_format' => 'object',
 				'preview_size' => 'thumbnail',
 				'library' => 'all',
@@ -718,22 +689,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Display Full Bleed',
 				'name' => 'full_bleed',
 				'type' => 'true_false',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '!=',
-							'value' => 'expanded',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'message' => 'Display this media to fit the browser window?',
 				'default_value' => 1,
 			),
@@ -744,27 +700,7 @@ if(function_exists("register_field_group"))
 				'type' => 'radio',
 				'instructions' => 'Choose the color the text should appear as when viewing this project on the homepage.',
 				'required' => 1,
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_53609371d0878',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '!=',
-							'value' => 'expanded',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'choices' => array (
 					'black' => 'Black',
 					'white' => 'White',
@@ -779,22 +715,7 @@ if(function_exists("register_field_group"))
 				'label' => 'Caption',
 				'name' => 'hide_caption',
 				'type' => 'true_false',
-				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
-						array (
-							'field' => 'field_53268de7bd287',
-							'operator' => '==',
-							'value' => '1',
-						),
-						array (
-							'field' => 'field_539b3ed031eb4',
-							'operator' => '!=',
-							'value' => 'expanded',
-						),
-					),
-					'allorany' => 'all',
-				),
+				
 				'message' => 'Hide caption in large image sequence?',
 				'default_value' => 0,
 			),

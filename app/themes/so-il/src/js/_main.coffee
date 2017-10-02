@@ -1307,7 +1307,7 @@ $.fn.showMedia = ->
 $.fn.sizeMedia = ->
   $this = $(this)
   $positioner = $this.find('.video-positioner')
-
+  
   ratio = $positioner.data('ratio')
   largeImageArea = $this.parents('.popup').length or
     $this.parents('.slideshow').length or
