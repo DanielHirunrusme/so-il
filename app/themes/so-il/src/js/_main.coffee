@@ -109,6 +109,7 @@ main = ($) ->
         console.log('project overview')
         $window.resize setJumpCutsOverview()
         $window.scroll setCurrentFootnoteOverview()
+        $window.scroll throttle playVisibleVideos()
         
         watchImageCallout()
         scrollRelated()
@@ -939,6 +940,7 @@ setContactFormFields = ->
   return setContactFormFields
 
 resizeBackgrounds = ->
+  return resizeBackgrounds
   backgrounds = $('.popup .video-positioner')
     .add('.home .excerpt_video .video-positioner')
     .add('.slideshow .video-positioner')

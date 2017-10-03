@@ -86,9 +86,8 @@
     </div>
     <?php else: ?>
       <div class="images single-image active popup">
-        <a href="<?php the_permalink() ?>" class="<?= get_post_type() ?> block">
-          <div class="inner">
-            <?php the_first_image() ?>
+        <a href="<?php the_permalink() ?>" class="<?= get_post_type() ?> image block">
+          <div class="block-inner">
             <div class="caption">
               <div class="caption-inner">
                 <div class="slideshow-caption">
@@ -102,6 +101,7 @@
               </div>
             </div>
           </div>
+          <?php the_first_image() ?>
         </a>
       </div>
     <?php endif; ?>
@@ -109,6 +109,7 @@
 
         <a href="<?php the_permalink() ?>" class="<?= get_post_type() ?> block">
           <div class="inner">
+        
             <?php the_first_image() ?>
                   <div class="text">
                     <h1>

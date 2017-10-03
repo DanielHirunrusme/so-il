@@ -25,6 +25,42 @@ video {
   }
 }
 
+.single-project.project-images {
+  .video {
+    padding-left: 1.33333em;
+    padding-right: 1.33333em;
+    display: block;
+    position: fixed;
+    top: 0;
+    
+  }
+  
+  .active {
+    .video-player {
+      @include opacity(1);
+      @include blur(0);
+    }
+  }
+  
+  .video-positioner {
+    width: 100%;
+    padding-top: 56.5%;
+  }
+  
+  .video-player {
+      position:absolute;
+      @include transform(scale(1.2));
+      @include transition(.5s opacity);
+      transition-property:opacity, -webkit-filter;
+      @include opacity(0);
+      @include blur(20);
+      display:block !important;
+      -webkit-transition-timing-function: linear; /* Safari and Chrome */
+      transition-timing-function: linear;
+      z-index:1;
+    }
+}
+
 .video-positioner {
   position: relative;
   background-color: black;
