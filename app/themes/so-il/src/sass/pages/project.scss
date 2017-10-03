@@ -129,6 +129,8 @@
 		
 		.container {
 			
+      padding-bottom:$body-padding;
+      
 			@include under-min-width {
 				margin-left:-$body-padding/2;
 			}	
@@ -141,7 +143,9 @@
 				
 				position:fixed;
 				top:auto !important;
+        
 				bottom:$body-padding - .23em;
+        bottom:0;
 			}
 		}
         

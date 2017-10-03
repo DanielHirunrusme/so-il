@@ -541,8 +541,8 @@ scrollOverviewRelated = ->
 		pb = Number( $('.content').css('padding-bottom').split('px').join('') )
 		console.log($(window).scrollTop())
 		console.log(padding + $('.related-right .inner').height() - $(window).height() + pb)
-		if $(window).scrollTop() > padding + $('.related-right .inner').height() - $(window).height() + (pb*2)
-			leftPos = $('.content').outerWidth()  - $('.related-right').width() - 1
+		if $(window).scrollTop() > padding + $('.related-right .inner').height() - $(window).height() + (pb*2) - pb / 5
+			leftPos = $('.content').outerWidth()  - $('.related-right').width() - .5
 			$('.related-right').addClass('fixed').css('left', leftPos).removeClass('sticky')
 		else
 			$('.related-right').removeClass('fixed').css('left', '')
@@ -651,7 +651,16 @@ setContentSticky = ->
   
   console.log('pb ' + pr)
   
-  tp = $('.overview-block .sticky-container .container').height() + $('.overview-block').position().top - $(window).height() + (pb*4)
+  tp = $('.overview-block .sticky-container .container').outerHeight() + $('.overview-block').position().top - $(window).height() + (pb*4) - pb*1.2
+  
+  if( $('.overview-block .sticky-container .container').outerHeight() <  $('.overview-block').outerHeight() )
+    if($(window).scrollTop() > tp) 
+  	  leftCont = $('.overview-block .text').width() + ovr*1.5
+  	  $('.overview-block .sticky-container .container').addClass('fixed').css('left', leftCont)
+    else
+      $('.overview-block .sticky-container .container').removeClass('fixed').css('left', '')
+  else
+    $('.overview-block .sticky-container .container').removeClass('fixed').css('left', '')
   
   $('.overview-block .sticky-container .container').css('width', $('body').outerWidth() * .333 - ovr)
   
@@ -659,11 +668,7 @@ setContentSticky = ->
   console.log($('body').scrollTop())
   
   
-  if($(window).scrollTop() > tp) 
-	  leftCont = $('.overview-block .text').width() + ovr*1.5
-	  $('.overview-block .sticky-container .container').addClass('fixed').css('left', leftCont)
-  else
-	  $('.overview-block .sticky-container .container').removeClass('fixed').css('left', '')
+  
   
   setContentSticky
 
