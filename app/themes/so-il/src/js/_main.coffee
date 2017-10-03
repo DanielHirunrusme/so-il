@@ -385,6 +385,7 @@ setCurrentBlock = ->
 overviewClick = (e)->
   
   if $('body').hasClass('contents-hidden')
+    e.preventDefault()
     $('body').removeClass('contents-hidden')
     $('.images').removeClass('popup')
     $('.block').removeClass('active block-init')
@@ -392,8 +393,9 @@ overviewClick = (e)->
     $('.block').off('click', watchProjectClicks)
     $('body').trigger('scroll')
     $('.background-image').css('display', '')
+    $('.video-positioner').css({ marginLeft:'', marginTop:'', height:'', position:'', top:'', left:'', width:'100%' })
     clearSlideshow()
-    e.preventDefault()
+    
   
   return overviewClick
 
@@ -943,7 +945,7 @@ setContactFormFields = ->
   return setContactFormFields
 
 resizeBackgrounds = ->
-
+  
   backgrounds = $('.popup .video-positioner')
     .add('.home .excerpt_video .video-positioner')
     .add('.slideshow .video-positioner')
