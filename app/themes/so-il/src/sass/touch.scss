@@ -21,7 +21,10 @@
   
   .home & {
     .background {
-      display:none !important;
+      .touch & {
+        display:none !important;
+      }
+      
     }
   }
 }
