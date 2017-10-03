@@ -205,7 +205,13 @@ main = ($) ->
 
     page:
       desktop: ->
-        console.log('this is a page')
+        
+        figID = 0
+        
+        for figure in $('figure')
+          figure.setAttribute('data-id', figID)
+          figID++
+        
         if $('body').hasClass('contact')
           setContactFormFields()
         else
@@ -282,7 +288,7 @@ lock = 0
 
 hasPeak = ->
 	if (lock > 0) 
-		lock-=.3; return false
+		lock-=.38; return false
 	if (deltas[0] == null) 
 		return false
 	if (deltas[0] <  deltas[4] && deltas[1] <= deltas[4] && deltas[2] <= deltas[4] && deltas[3] <= deltas[4] && deltas[5] <= deltas[4] && deltas[6] <= deltas[4] && deltas[7] <= deltas[4] && deltas[8] <  deltas[4]
@@ -358,6 +364,7 @@ fixPopupImagePosition = ->
 bindArrowKeys = ->
   
   $(document).keydown((e) ->
+      e.stopPropagation()
       switch e.which
           when 37 then prevImageClick()
           when 39 then nextImageClick()
@@ -841,6 +848,7 @@ removeInitSlideshow = ->
 closePageSlideshow = ->
   stopSlideshow()
   removeState 'contents-hidden popup'
+  $window.off('mousewheel')
 
 watchImageCallout = ->
   $('.images .image').on 'click', (e) ->
@@ -858,19 +866,27 @@ watchPageImageCallout = ->
       $('.close').mouseleave -> removeState 'blur-content'
       $('.close').click -> closePageSlideshow()
       
-  $('.page-slideshow .thumbnail').on 'click', ->
+  $('.page-slideshow .thumbnail').on 'click', (e) ->
     addState 'contents-hidden init-slideshow'
-   
+    
+    e.stopPropagation()
+    
+    figID = $(e.currentTarget).closest('figure').data('id')
+    
     $('.block-slideshow .block').removeClass('active')
-    $('.block-slideshow .block').eq($(this).index()-1).addClass('active')
+    $('.block-slideshow .block').eq(figID).addClass('active')
     
     setTimeout ->
         removeState 'init-slideshow'
       , 500
       
-    return if $('.popup').length
-    $(this).openPopup
-      fakePage: false
+    if $('.popup').length 
+      #alert('bind page mousewheel')
+      $window.on('mousewheel', mouseWheel)
+      return
+    else
+      $(this).openPopup
+        fakePage: false
     addState 'popup'
 
 watchSubsectionNavigation = ->
@@ -1582,9 +1598,9 @@ $.fn.openPopup = (options = {}) ->
     resizeBackgrounds()
 
   else
-    $window.on('mousewheel', mouseWheel)
     
-
+    #alert('bind mousehweel')
+    $window.on('mousewheel', mouseWheel)
     bindArrowKeys()
     
     $('.block-slideshow .block').first().addClass('active');
@@ -1612,7 +1628,7 @@ $.fn.openPopup = (options = {}) ->
 
     #$('.footnote').deactivate()
     addState 'contents-hidden'
-
+    
     #$images.fanImages options
   
   
