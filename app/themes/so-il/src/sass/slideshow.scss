@@ -296,7 +296,10 @@
   .image {
     
     .description {
-      height:auto;
+      .post-type-archive-project & {
+        height:auto;
+      }
+      
     }
     
     .background {
