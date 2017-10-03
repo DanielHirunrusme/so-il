@@ -101,7 +101,9 @@
               </div>
             </div>
           </div>
+          
           <?php the_first_image() ?>
+          
         </a>
       </div>
     <?php endif; ?>

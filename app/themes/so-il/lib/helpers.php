@@ -612,7 +612,7 @@ function the_first_image()
       $image_ratio = $image['sizes']["$image_size-width"] / $image['sizes']["$image_size-height"];
       $image_orientation = $image_ratio < 1 ? 'vertical' : 'horizontal';
       //style='background-image:url($image_url)'
-      echo "<div class='image' >" .
+      echo "<div class='image' style='background-image:url(".$image_url.")'>" .
               "<img src='$image_url' class='$image_orientation'>" .
            "</div>";
     
