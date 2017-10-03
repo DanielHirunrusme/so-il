@@ -61,7 +61,7 @@
     
     <?php
     
-      //update_post_meta( $post->ID, 'is_first_large', 1 );
+      update_post_meta( $post->ID, 'is_first_large', 1 );
       
     ?>
     
