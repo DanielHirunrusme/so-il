@@ -370,6 +370,8 @@ nav {
     margin: 0 auto !important;
     width: $five-columns;
   }
+  
+  
 }
 
 .related-right {
@@ -381,7 +383,7 @@ nav {
   
   &.fixed {
 	  position:fixed;
-	  bottom:$body-padding;
+	  bottom:$body-padding + .3em;
 	  margin-left:-$body-padding;
 	  top:auto;
   }

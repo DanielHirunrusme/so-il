@@ -141,16 +141,16 @@
 				
 				position:fixed;
 				top:auto !important;
-				bottom:$body-padding;
+				bottom:$body-padding - .23em;
 			}
 		}
         
         .image {
           position:relative;
 		  
-		  &:last-child {
-			  //margin-bottom:0;
-		  }
+		      &:last-child {
+			      margin-bottom:0;
+		      }
           
           .background {
             //@include opacity(1);
