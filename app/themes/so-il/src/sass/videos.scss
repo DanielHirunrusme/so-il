@@ -43,11 +43,12 @@ video {
   }
   
   .video-positioner {
-    width: 100%;
-    padding-top: 56.5%;
+    //width: 100%;
+    //padding-top: 56.5%;
   }
   
   .video-player {
+    /*
       position:absolute;
       @include transform(scale(1.2));
       @include transition(.5s opacity);
@@ -55,24 +56,68 @@ video {
       @include opacity(0);
       @include blur(20);
       display:block !important;
-      -webkit-transition-timing-function: linear; /* Safari and Chrome */
+      -webkit-transition-timing-function: linear;
       transition-timing-function: linear;
       z-index:1;
+    */
     }
 }
 
-.video-positioner {
-  position: relative;
-  background-color: black;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center center;
-  //margin-top:-100vh !important;
+
+.video-player {
   
-  @include at-mobile {
-    overflow: hidden;
+  .home &, .project-images &, .contents-hidden & {
+    @extend %blur-inactive;
+    position:absolute;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
   }
+  
+  .video-positioner {
+    position: relative;
+    background-color: black;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    
+    .home &, .project-images &, .contents-hidden &  {
+      position: fixed;
+      right: 0; 
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      width: auto; 
+      height: auto;
+      padding-top:0 !important;
+    
+    }
+  
+    video {
+      .home &, .project-images &, .contents-hidden & {
+        position: fixed;
+        right: 0; 
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+        width: auto; 
+        height: auto;
+      }
+    
+    }
+  
+  
+    
+  
+    @include at-mobile {
+      overflow: hidden;
+    }
+  }
+  
+
 }
+
 
 .video-poster {
   position: absolute;
@@ -87,6 +132,8 @@ video {
   top: 0;
   left: 0;
   
+
+  
   .vjs-poster,
   .vjs-text-track-display,
   .vjs-loading-spinner,
@@ -98,11 +145,14 @@ video {
   
   video, object {
     display: block;
+    
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    
+
   }
   
   .no-touch .popup .full-bleed &,

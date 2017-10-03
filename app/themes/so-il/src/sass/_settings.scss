@@ -147,7 +147,18 @@ $cropping-enlargement: 1.2;
 
 
 
-
+%blur-inactive {
+  position:absolute;
+  @include transform(scale(1.2));
+  @include transition(.5s opacity);
+  transition-property:opacity, -webkit-filter;
+  @include opacity(0);
+  @include blur(20);
+  display:block !important;
+  -webkit-transition-timing-function: linear; /* Safari and Chrome */
+  transition-timing-function: linear;
+  z-index:1;
+}
 
 
 

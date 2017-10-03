@@ -1080,6 +1080,7 @@ playVisibleHomeVideos = ->
     $video = $(video)
     offset = $video.offset().top
     $video.play()
+    #$video.sizeMedia()
   
   return playVisibleHomeVideos
 
