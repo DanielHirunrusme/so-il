@@ -48,6 +48,7 @@
       
       @include at-mobile {
         padding: 0;
+        margin-bottom: $line-height;
       }
     }
     
@@ -63,7 +64,7 @@
     .project-archive-categories {
       @include at-mobile {
         @include columned-navigation {
-          padding-top: $line-height;
+          //padding-top: $line-height;
           position: relative;
           margin-bottom: 0;
 
@@ -75,7 +76,7 @@
         }
         
         @include at-small-vertical {
-          margin-bottom: $line-height;
+          //margin-bottom: $line-height;
         }
       }
     }

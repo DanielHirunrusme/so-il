@@ -192,19 +192,19 @@
     }
     
     @include at-vertical-phone {
-      height:24px;
+      height:24px !important;
     }
   
     @include at-horizontal-phone {
-      height:24px;
+      height:24px !important;
     }
   
     @include at-giant-screen {
-      height:39px;
+      height:39px !important;
     }
     
     &.expanded {
-      height:auto;
+      height:auto !important;
       overflow:visible;
       display:block;
     }
@@ -243,6 +243,10 @@
     
     .home & {
         min-width:$min-width;
+        
+        .touch & {
+          min-width:auto;
+        }
     }
   
     

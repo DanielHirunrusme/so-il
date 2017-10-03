@@ -147,6 +147,7 @@ blockquote {
     left: 0;
     padding-top: $body-padding;
     width: inherit;
+    min-width:auto;
   }
 }
 

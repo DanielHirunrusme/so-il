@@ -509,4 +509,7 @@
 
 .block-inner {
 	min-width:$min-width;
+  .touch & {
+    min-width:auto;
+  }
 }

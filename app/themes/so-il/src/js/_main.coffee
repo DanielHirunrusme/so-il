@@ -166,7 +166,6 @@ main = ($) ->
       init: ->
         $('.block').on('click', watchProjectClicks)
         #openFirstImage()
-        console.log('desktop')
         
       desktop: ->
         $window.scroll fixHomeProjectPosition
@@ -175,7 +174,6 @@ main = ($) ->
         setCurrentBlockByMouse()
         calculateExcerpts()
         bindArrowKeys()
-        
         
         $('.block').setupBackgrounds()
       
@@ -940,7 +938,7 @@ setContactFormFields = ->
   return setContactFormFields
 
 resizeBackgrounds = ->
-  return resizeBackgrounds
+
   backgrounds = $('.popup .video-positioner')
     .add('.home .excerpt_video .video-positioner')
     .add('.slideshow .video-positioner')
@@ -1516,6 +1514,20 @@ $.fn.makeSlideshow = (options = {}) ->
   
   prev = '<div data-role="none" class="previous">Previous</div>'
   next = '<div data-role="none" class="next">Next</div>'
+  
+  
+  $('.video-positioner').each ->
+    $(this).css 'background-image', 'url(' + $(this).data('poster') + ')'
+    return
+  
+  $('.background').each ->
+    $(this).css 'background-image', 'url(' + $(this).data('image') + ')'
+    return
+    
+  if(onHome())
+    $('.block.image').each ->
+      $(this).css 'background-image', 'url(' + $(this).find('.background').data('image') + ')'
+      return
   
   beforeChange = =>
     $(this).addTransitionClass()
