@@ -80,6 +80,11 @@
     [dir="rtl"] & {
         float: right;
     }
+    
+    .background[data-full-bleed="false"] {
+      background-image:none !important;
+    }
+    
     img {
         display: block;
     }
