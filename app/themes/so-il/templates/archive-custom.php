@@ -9,7 +9,7 @@
              ?>
              <?php 
              foreach($items as $item):
-               //if($item->title == 'All'): print_r($item); endif;
+                //if($item->title == 'All'): print_r($item); endif;
                 $base = $item->title != 'All' ? '/projects/type/' : '';
                 $urlmatch = $base.strtolower($item->title);
                 if(strpos($host, $urlmatch) !== false):
@@ -43,7 +43,6 @@
                remove_all_actions( 'pre_get_posts' );
                
                $query = new WP_Query( $args );
-               
                
                if ( $query->have_posts() ) :
                    while ( $query->have_posts() ) : $query->the_post(); ?>

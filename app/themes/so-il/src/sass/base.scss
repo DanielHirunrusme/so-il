@@ -432,6 +432,12 @@ nav {
     //margin-bottom: $line-height / 2;
     position: relative;
   }
+  
+  a {
+    &:hover {
+      font-style:italic;
+    }
+  }
 }
 
 .newsletter-form {

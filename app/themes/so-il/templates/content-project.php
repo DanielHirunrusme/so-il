@@ -43,7 +43,7 @@
         
         <?php if (get_field('area_meters') || get_field('area_feet')): ?>
           <p>
-            Area<br>
+            <em>Area</em><br>
             <?php if (get_field('area_meters')): ?>
               <?php the_field('area_meters') ?> m&sup2; 
             <?php endif ?>

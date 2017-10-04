@@ -20,5 +20,17 @@
       <a href="<?= $pdf ?>" target="_blank" onclick=”_gaq.push([‘_trackEvent’,’Download’,’PDF’,this.href]);”>Download PDF</a>
     </li>
   <?php endif ?>
-  <a class="close" href="<?= project_close_link() ?>"><i></i></a>
+  
+  <?php
+  
+  //weird bug where ALL doesn't set $_SESSSION['project_back'] correctly
+  if (!strpos(project_close_link(), 'type')) {
+    $back_url = '/projects/';
+  } else {
+    $back_url = project_close_link();
+  }
+  
+  ?>
+  
+  <a class="close" data-back-url="<?php print_r($_SESSION); ?>" href="<?= $back_url ?>"><i></i></a>
 </ul>

@@ -34,6 +34,7 @@ add_action('init', 'set_last_page_for_project_close');
 function set_last_page_for_project_close() {
   if (!is_admin()) {
     session_start();
+
     if (is_outside_project() && is_outside_writing() && !is_login_form()) {
       $_SESSION['project_back'] = $_SERVER["REQUEST_URI"];
     }
@@ -49,8 +50,15 @@ function is_login_form()
 function is_outside_project()
 {
   $uri = $_SERVER["REQUEST_URI"];
-  return !preg_match('/^\/(featured|archive)\/.+?\/(images\/)?/', $uri) ||
-       preg_match('/^\/(featured|archive)\/(type|year)\/?/', $uri);
+  if($uri == '/projects/') {
+    echo 'matched';
+    $_SESSION['project_back'] = '/projects/';
+    return true;
+  } else {
+    return !preg_match('/^\/(featured|projects)\/.+?\/(images\/)?/', $uri) ||
+         preg_match('/^\/(featured|projects)\/(type|year)\/?/', $uri);
+  }
+  
 }
 
 function is_outside_writing()

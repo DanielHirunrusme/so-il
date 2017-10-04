@@ -543,11 +543,29 @@ function get_current_year()
   return false;
 }
 
+/*
 function project_close_link()
 {
   if (isset($_SESSION['project_back'])) {
+    //return '/projects/type/selected';
+    return $_SESSION['project_back'];
+  } else if (preg_match('/^\/featured/', $_SERVER["REQUEST_URI"])) {
+    return '/';
+  } else {
     return '/projects/type/selected';
-    //return $_SESSION['project_back'];
+  }
+}
+
+function in_project_overview()
+{
+  return preg_match('/(overview)\/?$/', $_SERVER["REQUEST_URI"]);
+}
+*/
+
+function project_close_link()
+{
+  if (isset($_SESSION['project_back'])) {
+    return $_SESSION['project_back'];
   } else if (preg_match('/^\/featured/', $_SERVER["REQUEST_URI"])) {
     return '/';
   } else {
