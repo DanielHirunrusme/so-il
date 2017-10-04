@@ -68,7 +68,8 @@ main = ($) ->
     post_type_archive_project:
       desktop: ->
         $window.scroll throttle playVisibleVideos()
-
+        playVisibleVideos()
+        console.log('play visible videos')
       mobile: ->
         $window.on 'orientationchange', tableBlockShim()
 
@@ -110,7 +111,7 @@ main = ($) ->
         $window.resize setJumpCutsOverview()
         $window.scroll setCurrentFootnoteOverview()
         $window.scroll throttle playVisibleVideos()
-        
+        playVisibleVideos()
         watchImageCallout()
         scrollRelated()
         
@@ -174,6 +175,7 @@ main = ($) ->
         setCurrentBlockByMouse()
         calculateExcerpts()
         bindArrowKeys()
+        playVisibleVideos()
         
         $('.block').setupBackgrounds()
       
@@ -1100,7 +1102,7 @@ playVisibleVideos = ->
       
       $video.play()
     else
-      $video.pause()
+      $video.play()
   
   
   console.log('play visible videos')

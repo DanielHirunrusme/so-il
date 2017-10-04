@@ -161,7 +161,7 @@
             <?php
               if (!is_home()) {
                 echo "<div class='background' data-image='$image_url' " .
-                       "data-full-bleed='true' " .
+                       "data-full-bleed='$full_bleed' " .
                        "data-ratio='$image_ratio'> " .
                      "</div>";
               }

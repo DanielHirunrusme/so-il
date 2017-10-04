@@ -699,7 +699,7 @@ function video_player($options)
         data-full-bleed="<?= $full_bleed ? "true" : "false" ?>"
         data-poster="<?= $poster ?>"
         data-ratio="<?= $ratio ?>" style="background:url(<?= $poster ?>) no-repeat center center cover">
-      <video data-poster="<?= $poster ?>" preload="none" loop>
+      <video data-poster="<?= $poster ?>" autoplay preload="none" loop>
         <?php foreach ($sources as $source): ?>
           <?php if ($source['quality'] !== 'hls'): ?>
             <source src="<?= $source['link'] ?>" type='video/mp4'>
