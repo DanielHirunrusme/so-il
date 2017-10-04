@@ -51,7 +51,6 @@ function is_outside_project()
 {
   $uri = $_SERVER["REQUEST_URI"];
   if($uri == '/projects/') {
-    echo 'matched';
     $_SESSION['project_back'] = '/projects/';
     return true;
   } else {
