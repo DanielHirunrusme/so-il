@@ -962,6 +962,7 @@ eachEl = (fn, els) ->
   $.each els, (i, el) -> fn el
 
 resizeBackground = (background, options = {}) ->
+  
   $background = $(background)
 
   ratio = $background.data 'ratio'
@@ -993,15 +994,30 @@ resizeBackground = (background, options = {}) ->
       height = wh
       width = height * ratio
   else
-    maxHeight = wh - padding.y * 2
-    maxWidth = ww - padding.x * 2
+    #maxHeight = wh - padding.y * 2
+    #maxWidth = ww - padding.x * 2
 
+    #width = maxWidth
+    #height = width / ratio
+
+    #if height > maxHeight
+      #height = maxHeight
+      #width = height * ratio
+    maxWidth = ww 
+    maxHeight = wh - ( $('.banner').position().top + $('.banner').outerHeight() ) * 4.5
+    ratio = $background.data 'ratio'
     width = maxWidth
     height = width / ratio
-
+    #console.log('width ' + maxWidth)
+    console.log('height ' + height)
+    console.log(maxHeight)
+    
     if height > maxHeight
+      console.log('greater than')
       height = maxHeight
+      ratio = maxHeight / height
       width = height * ratio
+    
 
   $background.css
     position: 'absolute'
@@ -1445,7 +1461,8 @@ $.fn.backgroundFrom = ($background) ->
   image.attr 'data-full-bleed', $background.data('full-bleed')
   image.css display: 'block'
   image.appendTo $this
-
+  
+  
   backgroundImages.push image
   $background.css display: ''
   resizeBackground image
